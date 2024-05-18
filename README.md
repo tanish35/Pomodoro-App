@@ -25,7 +25,7 @@ Welcome to our Pomodoro App! This productivity tool is designed to help you mana
 
    - `PORT`: Port number for the server.
    - `DATABASE_URL`: URL for your MongoDB database.
-   - `JWT_SECRET`: Secret key for JWT authentication.
+   - `SECRET`: Secret key for JWT authentication.
 
 4. **Run the Backend**: To start the backend server, run the following command from the root directory of the project.
 
