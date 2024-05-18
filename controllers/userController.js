@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import prisma from "../lib/prisma.js";
+import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 const registerUser = asyncHandler(async (req, res) => {
@@ -35,4 +36,38 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-export { registerUser };
+const loginUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+  let user = await prisma.User.findUnique({
+    where: {
+      email,
+    },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      password: true,
+    },
+  });
+  if (!user) {
+    res.sendStatus(404);
+    return;
+  }
+  const isPasswordCorrect = bcrypt.compareSync(password, user.password);
+  if (!isPasswordCorrect) {
+    res.sendStatus(401);
+    return;
+  }
+  const exp = Date.now() + 1000 * 60 * 60 * 24 * 30;
+  const token = jwt.sign({ sub: user.id, exp }, process.env.SECRET);
+  res.cookie("Authorization", token, {
+    expires: new Date(exp),
+    secure: false,
+    useHttpOnly: true,
+    sameSite: "lax",
+  });
+  delete user.password;
+  res.json(user);
+});
+
+export { registerUser, loginUser };

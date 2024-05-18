@@ -16,23 +16,6 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/stats", statsRoutes);
-
-// app.get("/createUser", async (req, res) => {
-//   try {
-//     const newUser = await prisma.user.create({
-//       data: {
-//         email: "example@example.com",
-//         password: "password123",
-//         name: "Alice",
-//       },
-//     });
-//     res.json(newUser);
-//   } catch (error) {
-//     console.error("Error creating user:", error);
-//     res.status(500).send("Error creating user");
-//   }
-// });
-
 app.use("/api/user", userRoutes);
 
 app.listen(process.env.PORT, () => {

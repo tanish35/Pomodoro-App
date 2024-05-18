@@ -2,11 +2,11 @@ import prisma from "../lib/prisma.js";
 import asyncHandler from "express-async-handler";
 
 const saveStats = asyncHandler(async (req, res) => {
-  const { id, minutes } = req.body;
+  const { minutes } = req.body;
   try {
     const user = await prisma.User.findUnique({
       where: {
-        id: id,
+        id: req.user.id,
       },
     });
     if (!user) {
@@ -14,7 +14,7 @@ const saveStats = asyncHandler(async (req, res) => {
     }
     const stats1 = await prisma.Stats.findMany({
       where: {
-        userId: id,
+        userId: req.user.id,
       },
     });
 
@@ -51,7 +51,7 @@ const saveStats = asyncHandler(async (req, res) => {
           streak: 1,
           user: {
             connect: {
-              id: id,
+              id: req.user.id,
             },
           },
         },
@@ -59,7 +59,7 @@ const saveStats = asyncHandler(async (req, res) => {
     }
     const updatedStats = await prisma.Stats.findMany({
       where: {
-        userId: id,
+        userId: req.user.id,
       },
     });
     res.send(updatedStats[0]);
