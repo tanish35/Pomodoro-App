@@ -50,4 +50,27 @@ const saveStats = asyncHandler(async (req, res) => {
   }
 });
 
-export { saveStats };
+const fetchStats = asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  try {
+    const user = await prisma.User.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+    const stats = await prisma.Stats.findMany({
+      where: {
+        userId: id,
+      },
+    });
+    res.send(stats[0]);
+  } catch (error) {
+    console.error("Error fetching stats:", error);
+    res.status(500).send("Error fetching stats");
+  }
+});
+
+export { saveStats, fetchStats };

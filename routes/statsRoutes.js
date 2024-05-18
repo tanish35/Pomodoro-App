@@ -1,10 +1,8 @@
 import express from "express";
-import { saveStats } from "../controllers/statsControllers.js";
+import { saveStats, fetchStats } from "../controllers/statsControllers.js";
 
 const router = express.Router();
 
-router.post("/", saveStats).get("/", (req, res) => {
-  res.send("Hello from statsRoutes.js");
-});
+router.post("/", saveStats).get("/:id", fetchStats);
 
 export default router;
