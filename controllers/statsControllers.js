@@ -85,7 +85,7 @@ const fetchStats = asyncHandler(async (req, res) => {
         userId: id,
       },
     });
-    res.send(stats[0]);
+    res.json(stats[0]);
   } catch (error) {
     console.error("Error fetching stats:", error);
     res.status(500).send("Error fetching stats");
