@@ -19,8 +19,18 @@ const saveStats = asyncHandler(async (req, res) => {
     });
 
     const stats = stats1[0];
-
+    let today = new Date();
+    today.setUTCHours(0, 0, 0, 0);
     if (stats) {
+      let newStreak = stats.streak;
+      if (
+        today - stats.date >= 24 * 60 * 60 * 1000 &&
+        today - stats.date < 2 * 24 * 60 * 60 * 1000
+      ) {
+        newStreak = stats.streak + 1;
+      } else if (today - stats.date >= 2 * 24 * 60 * 60 * 1000) {
+        newStreak = 1;
+      }
       await prisma.Stats.update({
         where: {
           id: stats.id,
@@ -28,6 +38,8 @@ const saveStats = asyncHandler(async (req, res) => {
         data: {
           totalTimeStudied: stats.totalTimeStudied + Number(minutes),
           maxTimeStudied: Math.max(stats.maxTimeStudied, Number(minutes)),
+          date: today,
+          streak: newStreak,
         },
       });
     } else {
@@ -35,6 +47,8 @@ const saveStats = asyncHandler(async (req, res) => {
         data: {
           totalTimeStudied: Number(minutes),
           maxTimeStudied: Number(minutes),
+          date: today,
+          streak: 1,
           user: {
             connect: {
               id: id,
@@ -43,7 +57,12 @@ const saveStats = asyncHandler(async (req, res) => {
         },
       });
     }
-    res.send("Stats saved");
+    const updatedStats = await prisma.Stats.findMany({
+      where: {
+        userId: id,
+      },
+    });
+    res.send(updatedStats[0]);
   } catch (error) {
     console.error("Error saving stats:", error);
     res.status(500).send("Error saving stats");
