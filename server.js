@@ -2,8 +2,8 @@ import express from "express";
 import "dotenv/config";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import prisma from "./lib/prisma.js";
 import statsRoutes from "./routes/statsRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 const app = express();
 app.use(express.json());
 
@@ -32,6 +32,8 @@ app.use("/api/stats", statsRoutes);
 //     res.status(500).send("Error creating user");
 //   }
 // });
+
+app.use("/api/user", userRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
