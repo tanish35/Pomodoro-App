@@ -45,6 +45,20 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
+const users = await prisma.user.findMany({
+  where: {
+    OR: [
+      {
+        username: {
+          contains: filter,
+          mode: 'insensitive', // Optional: makes the search case-insensitive
+        },
+      }
+    ],
+  },
+});
+
+
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   let user = await prisma.User.findUnique({
