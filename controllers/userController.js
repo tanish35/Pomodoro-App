@@ -4,9 +4,9 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, username, email, password } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 8);
-  if (!name || !email || !password) {
+  if (!name || !email || !password || !username) {
     return res.status(422).json({ error: "Please add all the fields" });
   }
   const userExists = await prisma.User.findUnique({
@@ -17,10 +17,19 @@ const registerUser = asyncHandler(async (req, res) => {
   if (userExists) {
     return res.status(422).json({ error: "User already exists" });
   }
+  const usernameExists = await prisma.User.findUnique({
+    where: {
+      username,
+    },
+  });
+  if (usernameExists) {
+    return res.status(422).json({ error: "Username already exists" });
+  }
   const user = await prisma.User.create({
     data: {
       name,
       email,
+      username,
       password: hashedPassword,
     },
   });
@@ -29,6 +38,7 @@ const registerUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      username: user.username,
       pic: user.pic,
     });
   } else {
@@ -46,6 +56,7 @@ const loginUser = asyncHandler(async (req, res) => {
       id: true,
       name: true,
       email: true,
+      username: true,
       password: true,
     },
   });

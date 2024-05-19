@@ -57,6 +57,19 @@ const saveStats = asyncHandler(async (req, res) => {
         },
       });
     }
+
+    await prisma.History.create({
+      data: {
+        timeStudied: Number(minutes),
+        date: new Date(),
+        user: {
+          connect: {
+            id: req.user.id,
+          },
+        },
+      },
+    });
+
     const updatedStats = await prisma.Stats.findMany({
       where: {
         userId: req.user.id,
@@ -74,7 +87,7 @@ const fetchStats = asyncHandler(async (req, res) => {
   try {
     const user = await prisma.User.findUnique({
       where: {
-        id: id,
+        username: id,
       },
     });
     if (!user) {
@@ -82,7 +95,7 @@ const fetchStats = asyncHandler(async (req, res) => {
     }
     const stats = await prisma.Stats.findMany({
       where: {
-        userId: id,
+        userId: user.id,
       },
     });
     res.json(stats[0]);
@@ -92,4 +105,27 @@ const fetchStats = asyncHandler(async (req, res) => {
   }
 });
 
-export { saveStats, fetchStats };
+const fetchHistory = asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  try {
+    const user = await prisma.User.findUnique({
+      where: {
+        username: id,
+      },
+    });
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+    const history = await prisma.History.findMany({
+      where: {
+        userId: user.id,
+      },
+    });
+    res.json(history);
+  } catch (error) {
+    console.error("Error fetching history:", error);
+    res.status(500).send("Error fetching history");
+  }
+});
+
+export { saveStats, fetchStats, fetchHistory };

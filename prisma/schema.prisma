@@ -14,13 +14,15 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid()) @map("_id")
-  email     String   @unique
+  id        String    @id @default(cuid()) @map("_id")
+  email     String    @unique
+  username  String    @unique
   name      String?
   password  String
   Stats     Stats[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  History   History[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Stats {
@@ -35,12 +37,12 @@ model Stats {
   updatedAt        DateTime  @updatedAt
 }
 
-// model History {
-//   id          String   @id @default(cuid()) @map("_id")
-//   user        User     @relation(fields: [userId], references: [id])
-//   userId      String
-//   date        DateTime
-//   timeStudied Int
-//   createdAt   DateTime @default(now())
-//   updatedAt   DateTime @updatedAt
-// }
+model History {
+  id          String   @id @default(cuid()) @map("_id")
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  date        DateTime
+  timeStudied Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
