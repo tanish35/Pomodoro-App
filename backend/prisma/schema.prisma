@@ -14,15 +14,16 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(cuid()) @map("_id")
-  email     String    @unique
-  username  String    @unique
-  name      String?
-  password  String
-  Stats     Stats[]
-  History   History[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id          String    @id @default(cuid()) @map("_id")
+  email       String    @unique
+  username    String    @unique
+  name        String?
+  accessToken String?
+  password    String?
+  Stats       Stats[]
+  History     History[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model Stats {

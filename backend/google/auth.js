@@ -1,6 +1,19 @@
 import passport from "passport";
+import prisma from "../lib/prisma.js";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
-import "dotenv/config";
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await prisma.User.findUnique({ where: { id } });
+    done(null, user);
+  } catch (error) {
+    done(error, null);
+  }
+});
 
 passport.use(
   new GoogleStrategy(
@@ -9,10 +22,22 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "http://localhost:5000/auth/google/callback",
     },
-    function (accessToken, refreshToken, profile, cb) {
-      User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        return cb(err, user);
-      });
+    async (accessToken, refreshToken, profile, cb) => {
+      try {
+        const user = await prisma.User.upsert({
+          where: { email: profile.emails[0].value },
+          update: {},
+          create: {
+            email: profile.emails[0].value,
+            name: profile.displayName,
+            accessToken: accessToken,
+            username: profile.emails[0].value,
+          },
+        });
+        cb(null, user);
+      } catch (error) {
+        cb(error, null);
+      }
     }
   )
 );
