@@ -39,7 +39,6 @@ const registerUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       username: user.username,
-      pic: user.pic,
     });
   } else {
     return res.status(500).json({ error: "Failed to register user" });
@@ -62,6 +61,12 @@ const loginUser = asyncHandler(async (req, res) => {
   });
   if (!user) {
     res.sendStatus(404);
+    return;
+  }
+  if (!user.password) {
+    res.status(401).json({
+      error: "You have logged in with Google. Please login with Google.",
+    });
     return;
   }
   const isPasswordCorrect = bcrypt.compareSync(password, user.password);
