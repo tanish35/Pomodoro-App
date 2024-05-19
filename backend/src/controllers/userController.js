@@ -45,19 +45,22 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-const users = await prisma.user.findMany({
-  where: {
-    OR: [
-      {
-        username: {
-          contains: filter,
-          mode: 'insensitive', // Optional: makes the search case-insensitive
-        },
-      }
-    ],
-  },
-});
-
+// const users = asyncHandler(async (req, res) => {
+//   const filter = req.query.name;
+//   const filteredUser = await prisma.user.findMany({
+//     where: {
+//       OR: [
+//         {
+//           username: {
+//             contains: filter,
+//             mode: "insensitive", // Optional: makes the search case-insensitive
+//           },
+//         },
+//       ],
+//     },
+//   });
+//   res.json(filteredUser);
+// });
 
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
