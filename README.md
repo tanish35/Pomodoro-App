@@ -43,6 +43,7 @@ Welcome to our Pomodoro App! This productivity tool is designed to help you mana
 - **Backend**: Utilizes Node.js and Express.js.
 - **Database**: MongoDB, managed with Prisma ORM.
 - **Authentication**: JWT (JSON Web Tokens) for secure user authentication.
+- **Authentication**: OAuth 2.0 is being used with Google for user-friendly Sign-In.
 
 **Usage**
 
