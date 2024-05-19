@@ -22,7 +22,7 @@ app.use("/api/stats", statsRoutes);
 app.use("/api/user", userRoutes);
 app.use(
   session({
-    secret: "secret",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false },
