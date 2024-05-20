@@ -1,11 +1,22 @@
-**Pomodoro App**
-
----
+# Pomodoro App
 
 Welcome to our Pomodoro App! This productivity tool is designed to help you manage your time effectively using the Pomodoro Technique. With this app, you can break your work into intervals, traditionally 25 minutes in length, separated by short breaks.
 
-**Getting Started**
+# Getting Started
 
+# Using Docker
+
+1. **Clone the Repository**: Begin by cloning this repository to your local machine.
+
+   ```bash
+   git clone <repository_url>
+   ```
+
+2. **Run the dockerfile:**
+   ```
+      docker-compose up --build
+   ```
+# Without using Docker
 1. **Clone the Repository**: Begin by cloning this repository to your local machine.
 
    ```bash

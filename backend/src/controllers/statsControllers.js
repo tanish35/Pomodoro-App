@@ -128,4 +128,28 @@ const fetchHistory = asyncHandler(async (req, res) => {
   }
 });
 
-export { saveStats, fetchStats, fetchHistory };
+const fetchBulkData = asyncHandler(async (req, res) => {
+  const { username } = req.body;
+  if (!username) {
+    return res.status(422).json({ error: "Please add all the fields" });
+  }
+  try {
+    const stats = await prisma.History.findUnique({
+      where: {
+        username,
+      },
+      select: {
+        date: true,
+        timeStudied: true,
+      },
+    });
+    res.json({
+      date: stats.date,
+      timeStudied: stats.timeStudied,
+    });
+  } catch (e) {
+    res.status(500).json({ error: "Failed to fetch stats" });
+  }
+});
+
+export { saveStats, fetchStats, fetchHistory, fetchBulkData };

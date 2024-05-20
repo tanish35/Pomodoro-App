@@ -20,6 +20,7 @@ model User {
   name        String?
   accessToken String?
   password    String?
+  pic         String?   @default("https://i.ytimg.com/vi/Py_-3di1yx0/maxresdefault.jpg")
   Stats       Stats[]
   History     History[]
   createdAt   DateTime  @default(now())
