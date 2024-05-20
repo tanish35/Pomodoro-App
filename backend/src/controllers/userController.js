@@ -60,6 +60,7 @@ const registerUser = asyncHandler(async (req, res) => {
   };
   
   handleOtpGeneration();
+  res.json({ message: "OTP sent to email" });
 });
 
 let otpData = null;
