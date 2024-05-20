@@ -12,9 +12,8 @@ const router = express.Router();
 router.post("/", checkAuth, saveStats).get("/:id", fetchStats);
 router.get("/history/:id", fetchHistory);
 
-router.get("/bulk-data", async (req, res) => {
-
-  const {username} = req.body;
+router.get("/bulkdata", checkAuth, async (req, res) => {
+  const { username } = req.body;
   if (!username) {
     return res.status(422).json({ error: "Please add all the fields" });
   }
@@ -35,6 +34,5 @@ router.get("/bulk-data", async (req, res) => {
   } catch (e) {
     res.status(500).json({ error: "Failed to fetch stats" });
   }
-  
-})
+});
 export default router;
