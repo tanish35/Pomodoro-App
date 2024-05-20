@@ -28,8 +28,12 @@ Welcome to our Pomodoro App! This productivity tool is designed to help you mana
    ```bash
    cd pomodoro-app
    npm install
-   cd client
+   cd backend
    npm install
+   cd ..
+   cd frontend
+   npm install
+   cd ..
    ```
 
 3. **Set Environment Variables**: Before running the app, make sure to set the required environment variables. You will need to set the following variables in your environment file:
@@ -40,7 +44,7 @@ Welcome to our Pomodoro App! This productivity tool is designed to help you mana
    - `GOOGLE_CLIENT_ID`: OAuth 2.0 Google Client ID.
    - `GOOGLE_CLIENT_SECRET`: OAuth 2.0 Google Client Secret.
 
-4. **Run the Backend**: To start the backend server, run the following command from the root directory of the project.
+4. **Run the Backend**: To start the backend and frontend server, run the following command from the root directory of the project.
 
    ```bash
    npm run dev
