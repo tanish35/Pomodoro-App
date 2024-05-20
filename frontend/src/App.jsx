@@ -21,7 +21,7 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <a href="http://localhost:5000/auth/google">Sign in with Google</a>
+        <a href="http://localhost:3000/auth/google">Sign in with Google</a>
 
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR

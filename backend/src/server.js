@@ -17,9 +17,6 @@ app.use(
   })
 );
 app.use(cookieParser());
-
-app.use("/api/stats", statsRoutes);
-app.use("/api/user", userRoutes);
 app.use(
   session({
     secret: process.env.SECRET,
@@ -30,7 +27,9 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use("/api/stats", statsRoutes);
+app.use("/api/user", userRoutes);
+app.use("/auth/google", googleRoutes);
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
 });
-app.use("/auth/google", googleRoutes);

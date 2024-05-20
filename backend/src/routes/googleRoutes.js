@@ -27,6 +27,7 @@ router.get(
       useHttpOnly: true,
       sameSite: "lax",
     });
+    delete req.user.password;
     res.json(req.user);
   }
 );

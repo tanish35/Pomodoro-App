@@ -2,19 +2,6 @@ import passport from "passport";
 import prisma from "../lib/prisma.js";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser(async (id, done) => {
-  try {
-    const user = await prisma.User.findUnique({ where: { id } });
-    done(null, user);
-  } catch (error) {
-    done(error, null);
-  }
-});
-
 passport.use(
   new GoogleStrategy(
     {
@@ -41,3 +28,16 @@ passport.use(
     }
   )
 );
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await prisma.User.findUnique({ where: { id } });
+    done(null, user);
+  } catch (error) {
+    done(error, null);
+  }
+});
