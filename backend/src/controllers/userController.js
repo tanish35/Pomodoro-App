@@ -3,8 +3,11 @@ import prisma from "../lib/prisma.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { SMTPClient, Message } from 'emailjs';
+import e from "express";
 
 let data = {};
+
+let emailForResetPassword = null;
 
 const emailServer = new SMTPClient({
   user: process.env.EMAIL_USER,
@@ -25,7 +28,7 @@ function sendOtpEmail(to, otp) {
     if (err) {
       console.log(err);
     } else {
-      console.log('OTP sent successfully:', message);
+      console.log('OTP sent successfully');
     }
   });
 }
@@ -139,6 +142,77 @@ const handleVerifyOTP = asyncHandler(async (req, res) => {
     res.status(400).json({ message: verificationResult.message });
   }
 })
+
+function resetPassword(req, res) {
+  const {email} = req.body;
+
+  if (!email) {
+    return res.status(400).json({ message: 'Email is required' });
+  }
+
+  const otpInfo = generateOTP();
+  emailForResetPassword = email;
+  console.log(emailForResetPassword);
+  storeOTP(otpInfo);
+  sendOtpEmail(email, otpInfo.otp);
+  res.json({ message: 'Password reset otp has been sent to email' });
+}
+
+async function verifyResetPasswordOTP(req, res) {
+  const {otp} = req.body;
+
+  if (!otp) {
+    return res.status(400).json({ message: 'OTP is required' });
+  }
+
+  const verificationResult = verifyOTP(otp);
+  if (verificationResult.isValid) {
+    // emailForResetPassword = 
+    res.status(202).json({ message: verificationResult.message });
+
+  } else {
+    // emailForResetPassword = null;
+    res.status(400).json({ message: verificationResult.message });
+  }
+};
+
+async function updatePassword(req, res) {
+  const {password} = req.body;
+  const hashedPassword = bcrypt.hashSync(password, 8);
+  if (!password) {
+    return res.status(400).json({ message: 'Password is required' });
+  }
+
+  if (emailForResetPassword == null) {
+    return res.status(400).json({ message: 'Email not found' });
+  }
+
+  try {
+    const user = await prisma.User.update({
+      where: {
+        email: emailForResetPassword,
+      },
+      data: {
+        password: hashedPassword,
+      },
+    });
+
+    res.json({ message: 'Password updated successfully',
+    username: user.username,
+    name: user.name,
+    email: user.email,
+  });
+  }
+  catch (e) {
+    res.status(500).json({ error: 'Failed to update password/ User not found' });
+  }
+
+  // res.json({
+  //   username: user.username,
+  //   name: user.name,
+  //   email: user.email,
+  // });
+};
 
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -293,6 +367,9 @@ export {
   registerUser,
   loginUser,
   handleOtpGeneration,
+  resetPassword,
+  verifyResetPasswordOTP,
+  updatePassword,
   handleVerifyOTP,
   signOut,
   updateFields,

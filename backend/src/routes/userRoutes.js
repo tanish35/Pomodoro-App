@@ -4,6 +4,9 @@ import {
   loginUser,
   handleOtpGeneration,
   handleVerifyOTP,
+  resetPassword,
+  verifyResetPasswordOTP,
+  updatePassword,
   signOut,
   updateFields,
   updatepassword,
@@ -13,6 +16,7 @@ import {
 import checkAuth from "../middleware/checkAuth.js";
 const router = express.Router();
 
+// To verify email while registering
 router.route("/register").post(registerUser);
 
 router.get('/generate-otp', (req, res) => {
@@ -21,6 +25,11 @@ router.get('/generate-otp', (req, res) => {
 });
 
 router.route("/verify-otp").post(handleVerifyOTP);
+
+// To verify email while reseting password / forgot password
+router.route('/reset-password').post(resetPassword);
+router.route('/verify-reset-password-otp').post(verifyResetPasswordOTP);
+router.route('/update-password').post(updatePassword);
 
 router.route("/login").post(loginUser);
 router.route("/signout").get(signOut);
