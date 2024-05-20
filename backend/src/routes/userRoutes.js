@@ -2,6 +2,8 @@ import express from "express";
 import {
   registerUser,
   loginUser,
+  handleOtpGeneration,
+  handleVerifyOTP,
   signOut,
   updateFields,
   updatepassword,
@@ -11,7 +13,15 @@ import {
 import checkAuth from "../middleware/checkAuth.js";
 const router = express.Router();
 
-router.route("/").post(registerUser);
+router.route("/register").post(registerUser);
+
+router.get('/generate-otp', (req, res) => {
+  const {otp, expiresAt} = handleOtpGeneration();
+  res.json({ otp, expiresAt });
+});
+
+router.route("/verify-otp").post(handleVerifyOTP);
+
 router.route("/login").post(loginUser);
 router.route("/signout").get(signOut);
 router.put("/update", checkAuth, updateFields);

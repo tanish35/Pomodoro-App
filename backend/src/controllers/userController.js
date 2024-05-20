@@ -2,6 +2,33 @@ import asyncHandler from "express-async-handler";
 import prisma from "../lib/prisma.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import { SMTPClient, Message } from 'emailjs';
+
+let data = {};
+
+const emailServer = new SMTPClient({
+  user: process.env.EMAIL_USER,
+  password: process.env.EMAIL_PASSWORD,
+  host: process.env.EMAIL_HOST,
+  ssl: true,
+});
+
+function sendOtpEmail(to, otp) {
+  const message = new Message({
+    text: `Your OTP is: ${otp}`,
+    from: `Promodoro Tech Team ${process.env.EMAIL_USER}`,
+    to: to,
+    subject: 'Your OTP Code'
+  });
+
+  emailServer.send(message, (err, message) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('OTP sent successfully:', message);
+    }
+  });
+}
 
 const registerUser = asyncHandler(async (req, res) => {
   const { name, username, email, password } = req.body;
@@ -25,25 +52,92 @@ const registerUser = asyncHandler(async (req, res) => {
   if (usernameExists) {
     return res.status(422).json({ error: "Username already exists" });
   }
-  const user = await prisma.User.create({
-    data: {
-      name,
-      email,
-      username,
-      password: hashedPassword,
-    },
-  });
-  if (user) {
-    return res.status(201).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      username: user.username,
-    });
-  } else {
-    return res.status(500).json({ error: "Failed to register user" });
-  }
+  data =  {
+    name,
+    email,
+    username,
+    password: hashedPassword,
+  };
+  
+  handleOtpGeneration();
 });
+
+let otpData = null;
+
+function generateOTP() {
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  const now = new Date();
+  const expiresAt = new Date(now.getTime() + 5 * 60000);
+
+
+  return {
+    otp,
+    expiresAt
+  };
+}
+
+function handleOtpGeneration() {
+  const otpInfo = generateOTP();
+  const {email} = data;
+  storeOTP(otpInfo);
+  sendOtpEmail(email, otpInfo.otp);
+  return { otp: otpInfo.otp, expiresAt: otpInfo.expiresAt };
+
+}
+
+// Store OTP
+function storeOTP(otpInfo) {
+  otpData = otpInfo;
+}
+
+// Verify OTP
+function verifyOTP(inputOtp) {
+  if (!otpData) {
+    return { isValid: false, message: "No OTP generated." };
+  }
+
+  const now = new Date();
+  if (now > otpData.expiresAt) {
+    otpData = null; // OTP expired
+    return { isValid: false, message: "OTP expired." };
+  }
+
+  if (inputOtp === otpData.otp) {
+    otpData = null; // OTP valid and used
+    return { isValid: true, message: "OTP is valid." };
+  }
+
+  return { isValid: false, message: "Invalid OTP." };
+}
+
+const handleVerifyOTP = asyncHandler(async (req, res) => {
+  const { otp } = req.body;
+
+  if (!otp) {
+    return res.status(400).json({ message: 'OTP is required' });
+  }
+
+  const verificationResult = verifyOTP(otp);
+
+  if (verificationResult.isValid) {
+    res.json({ message: verificationResult.message });
+    const user = await prisma.User.create({
+      data: data,
+    })
+    if (user) {
+      return res.status(201).json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        username: user.username,
+      });
+    } else {
+      return res.status(500).json({ error: "Failed to register user" });
+    }
+  } else {
+    res.status(400).json({ message: verificationResult.message });
+  }
+})
 
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -116,6 +210,8 @@ const updateFields = asyncHandler(async (req, res) => {
     res.status(500).json({ error: "Failed to update user" });
   }
 });
+
+
 
 const updatepassword = asyncHandler(async (req, res) => {
   try {
@@ -195,6 +291,8 @@ const updatePicture = asyncHandler(async (req, res) => {
 export {
   registerUser,
   loginUser,
+  handleOtpGeneration,
+  handleVerifyOTP,
   signOut,
   updateFields,
   updatepassword,
