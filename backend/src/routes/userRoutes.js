@@ -34,7 +34,7 @@ router.route('/update-password').post(updatePassword);
 router.route("/login").post(loginUser);
 router.route("/signout").get(signOut);
 router.put("/update", checkAuth, updateFields);
-router.put("/updatepassword", checkAuth, updatepassword);
+router.put("/changepassword", checkAuth, updatepassword);
 router.get("/bulk", filterUsers);
 router.put("/updatepicture", checkAuth, updatePicture);
 //filterUsers is a route which you can use to search users
