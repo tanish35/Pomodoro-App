@@ -2,6 +2,7 @@ import asyncHandler from "express-async-handler";
 import prisma from "../lib/prisma.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import sendMail from "../mail/nodeMailing.js";
 
 const registerUser = asyncHandler(async (req, res) => {
   const { name, username, email, password } = req.body;
@@ -25,24 +26,48 @@ const registerUser = asyncHandler(async (req, res) => {
   if (usernameExists) {
     return res.status(422).json({ error: "Username already exists" });
   }
-  const user = await prisma.User.create({
+  const user = await prisma.TempUser.create({
     data: {
       name,
       email,
       username,
       password: hashedPassword,
+      expiresAt: new Date(Date.now() + 1000 * 60 * 5),
     },
   });
-  if (user) {
-    return res.status(201).json({
-      _id: user._id,
+  const exp = Date.now() + 1000 * 60 * 5;
+  const token = jwt.sign({ sub: user.id, exp }, process.env.SECRET);
+  const url = `http://localhost:3000/api/user/verify/${token}`;
+  const htmlContent = `<a href="${url}">Verify using this link</a>`;
+  await sendMail(email, htmlContent);
+  res.sendStatus(200);
+});
+
+const verifyUser = asyncHandler(async (req, res) => {
+  const { token } = req.params;
+  const decoded = jwt.verify(token, process.env.SECRET);
+  const user = await prisma.TempUser.findUnique({
+    where: {
+      id: decoded.sub,
+    },
+  });
+  if (!user) {
+    return res.status(404).json({ error: "User not found" });
+  }
+  await prisma.User.create({
+    data: {
       name: user.name,
       email: user.email,
       username: user.username,
-    });
-  } else {
-    return res.status(500).json({ error: "Failed to register user" });
-  }
+      password: user.password,
+    },
+  });
+  await prisma.TempUser.delete({
+    where: {
+      id: decoded.sub,
+    },
+  });
+  res.sendStatus(200);
 });
 
 const loginUser = asyncHandler(async (req, res) => {
@@ -200,4 +225,5 @@ export {
   updatepassword,
   filterUsers,
   updatePicture,
+  verifyUser,
 };

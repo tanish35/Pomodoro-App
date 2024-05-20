@@ -48,3 +48,15 @@ model History {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
+model TempUser {
+  id        String   @id @default(cuid()) @map("_id")
+  email     String   @unique
+  username  String   @unique
+  name      String?
+  password  String
+  pic       String?  @default("https://i.ytimg.com/vi/Py_-3di1yx0/maxresdefault.jpg")
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
