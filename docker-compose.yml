@@ -6,19 +6,21 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      target: PRODUCTION_IMAGE  
     ports:
-      - "3000:3000"
+      - "3001:3001"
     volumes:
       - ./frontend:/app
     working_dir: /app
-    command: npm run dev
+    command: npm run preview  
+
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "4000:4000"
+      - "3000:3000"
     volumes:
       - ./backend:/app
     working_dir: /app
