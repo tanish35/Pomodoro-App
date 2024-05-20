@@ -6,6 +6,7 @@ import {
   updateFields,
   updatepassword,
   filterUsers,
+  updatePicture,
 } from "../controllers/userController.js";
 import checkAuth from "../middleware/checkAuth.js";
 const router = express.Router();
@@ -16,5 +17,6 @@ router.route("/signout").get(signOut);
 router.put("/update", checkAuth, updateFields);
 router.put("/updatepassword", checkAuth, updatepassword);
 router.get("/bulk", filterUsers);
+router.put("/updatepicture", checkAuth, updatePicture);
 //filterUsers is a route which you can use to search users
 export default router;

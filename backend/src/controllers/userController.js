@@ -174,6 +174,24 @@ const filterUsers = asyncHandler(async (req, res) => {
   });
 });
 
+const updatePicture = asyncHandler(async (req, res) => {
+  const { pic } = req.body;
+  if (!pic) {
+    return res.status(422).json({ error: "Please add all the fields" });
+  }
+  const user = await prisma.User.update({
+    where: {
+      id: req.user.id,
+    },
+    data: {
+      pic,
+    },
+  });
+  res.json({
+    picture: user.pic,
+  });
+});
+
 export {
   registerUser,
   loginUser,
@@ -181,4 +199,5 @@ export {
   updateFields,
   updatepassword,
   filterUsers,
+  updatePicture,
 };
