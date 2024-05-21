@@ -11,11 +11,11 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendMail = asyncHandler(async (email, url) => {
-  const info = await transporter.sendMail({
-    from: '"Pomodoro App" <Pomodoro@pomodoro.com>', // sender address
+  await transporter.sendMail({
+    from: '"Pomodoro App" <Pomodoro@pomodoro.com>',
     to: email,
-    subject: "URL for verification", // Subject line
-    text: "Single use URL",
+    subject: "URL/OTP for verification",
+    text: "Single use URL/OTP",
     html: url,
   });
 });

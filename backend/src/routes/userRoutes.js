@@ -8,6 +8,8 @@ import {
   filterUsers,
   updatePicture,
   verifyUser,
+  forgotPassword,
+  resetPassword,
 } from "../controllers/userController.js";
 import checkAuth from "../middleware/checkAuth.js";
 const router = express.Router();
@@ -20,5 +22,7 @@ router.put("/updatepassword", checkAuth, updatepassword);
 router.get("/bulk", filterUsers); //filterUsers is a route which you can use to search users
 router.get("/verify/:token", verifyUser);
 router.put("/updatepicture", checkAuth, updatePicture);
+router.post("/forgotpassword", forgotPassword);
+router.post("/resetpassword", resetPassword);
 
 export default router;

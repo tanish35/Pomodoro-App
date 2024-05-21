@@ -54,6 +54,9 @@ const verifyUser = asyncHandler(async (req, res) => {
   if (!user) {
     return res.status(404).json({ error: "User not found" });
   }
+  if (user.expiresAt < new Date()) {
+    return res.status(400).json({ error: "Token expired" });
+  }
   await prisma.User.create({
     data: {
       name: user.name,
@@ -217,6 +220,71 @@ const updatePicture = asyncHandler(async (req, res) => {
   });
 });
 
+const forgotPassword = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  const user = await prisma.User.findUnique({
+    where: {
+      email,
+    },
+  });
+  if (!user) {
+    return res.status(404).json({ error: "User not found" });
+  }
+  const exp = Date.now() + 1000 * 60 * 5;
+  const OTP = Math.floor(100000 + Math.random() * 900000).toString();
+  await prisma.TempUser.upsert({
+    where: {
+      email,
+    },
+    update: {
+      OTP,
+      expiresAt: new Date(exp),
+    },
+    create: {
+      email,
+      OTP,
+      expiresAt: new Date(exp),
+    },
+  });
+
+  const htmlContent = `<h1>${OTP}</h1>`;
+  await sendMail(email, htmlContent);
+  res.sendStatus(200);
+});
+
+const resetPassword = asyncHandler(async (req, res) => {
+  const { email, OTP, password } = req.body;
+  const user = await prisma.TempUser.findUnique({
+    where: {
+      email,
+    },
+  });
+  if (!user) {
+    return res.status(404).json({ error: "User not found" });
+  }
+  if (user.OTP !== OTP) {
+    return res.status(401).json({ error: "Invalid OTP" });
+  }
+  if (user.expiresAt < new Date()) {
+    return res.status(400).json({ error: "OTP expired" });
+  }
+  const hashedPassword = bcrypt.hashSync(password, 8);
+  await prisma.User.update({
+    where: {
+      email,
+    },
+    data: {
+      password: hashedPassword,
+    },
+  });
+  await prisma.TempUser.delete({
+    where: {
+      email,
+    },
+  });
+  res.sendStatus(200);
+});
+
 export {
   registerUser,
   loginUser,
@@ -226,4 +294,6 @@ export {
   filterUsers,
   updatePicture,
   verifyUser,
+  forgotPassword,
+  resetPassword,
 };
