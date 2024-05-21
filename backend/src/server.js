@@ -5,6 +5,7 @@ import cors from "cors";
 import statsRoutes from "./routes/statsRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import googleRoutes from "./routes/googleRoutes.js";
+import deleteTemp from "./deleteTemp/delete.js";
 import passport from "passport";
 import session from "express-session";
 const app = express();
@@ -30,6 +31,7 @@ app.use(passport.session());
 app.use("/api/stats", statsRoutes);
 app.use("/api/user", userRoutes);
 app.use("/auth/google", googleRoutes);
+app.use("/deletetemp", deleteTemp);
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
 });
