@@ -1,12 +1,12 @@
 import nodemailer from "nodemailer";
 import asyncHandler from "express-async-handler";
 const transporter = nodemailer.createTransport({
-  host: "smtp-relay.brevo.com",
-  port: 587,
+  host: process.env.BREVO_HOST,
+  port: process.env.BREVO_PORT,
   secure: false, // Use `true` for port 465, `false` for all other ports
   auth: {
-    user: "tanishmajumdar2912@gmail.com",
-    pass: "AbgTxFyH9G16vsmz",
+    user: process.env.BREVO_USER,
+    pass: process.env.BREVO_PASSWORD,
   },
 });
 
