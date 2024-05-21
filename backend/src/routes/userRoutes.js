@@ -24,5 +24,4 @@ router.get("/verify/:token", verifyUser);
 router.put("/updatepicture", checkAuth, updatePicture);
 router.post("/forgotpassword", forgotPassword);
 router.post("/resetpassword", resetPassword);
-
 export default router;
