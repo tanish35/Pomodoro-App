@@ -7,7 +7,7 @@ from sklearn.preprocessing import LabelEncoder
 import pickle
 
 # Load data
-data = pd.read_csv(r'C:\Users\HP\Desktop\break\train.csv')
+data = pd.read_csv(r'breakPrediction/train.csv')
 
 # Prepare features and target variable
 x = data.drop("BREAKS IN MINS /HOUR OF STUDY", axis=1)
