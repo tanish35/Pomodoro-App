@@ -1,4 +1,6 @@
 fastapi
 uvicorn[standard]
 pandas
+pydantic
+scikit-learn
 xgboost
