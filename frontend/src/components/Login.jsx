@@ -5,6 +5,7 @@ import { styles } from "../style";
 import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "./hoc";
 import { slideIn } from "../utils/motions";
+import {Button} from "@nextui-org/react";
 const Login = () => {
   const formRef = useRef();
   const [form, setForm] = useState({
@@ -72,7 +73,7 @@ const Login = () => {
 
           <Link
           to='/contact3'
-          className='flex items-center gap-2'
+          className='flex items-center gap-2 text-white'
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
@@ -82,7 +83,7 @@ const Login = () => {
 
           <Link
           to='./contact2'
-          className='flex items-center gap-2'
+          className='flex items-center gap-2 text-white'
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
@@ -92,12 +93,13 @@ const Login = () => {
 
           
 
-          <button
+          <Button
             type='submit'
-            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'
+            variant="bordered"
+            className='bg-purple-950 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary'
           >
             {loading ? "Loggin you in..." : "Login"}
-          </button>
+          </Button>
 
           
         </form>
