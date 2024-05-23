@@ -10,6 +10,7 @@ import {
   verifyUser,
   forgotPassword,
   resetPassword,
+  fetchUsername,
 } from "../controllers/userController.js";
 import checkAuth from "../middleware/checkAuth.js";
 const router = express.Router();
@@ -24,4 +25,5 @@ router.get("/verify/:token", verifyUser);
 router.put("/updatepicture", checkAuth, updatePicture);
 router.post("/forgotpassword", forgotPassword);
 router.post("/resetpassword", resetPassword);
+router.get("/me", checkAuth, fetchUsername);
 export default router;

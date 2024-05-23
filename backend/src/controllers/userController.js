@@ -285,6 +285,11 @@ const resetPassword = asyncHandler(async (req, res) => {
   res.sendStatus(200);
 });
 
+const fetchUsername = asyncHandler(async (req, res) => {
+  const { username } = req.user;
+  res.json({ username });
+});
+
 export {
   registerUser,
   loginUser,
@@ -296,4 +301,5 @@ export {
   verifyUser,
   forgotPassword,
   resetPassword,
+  fetchUsername,
 };
