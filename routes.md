@@ -1,5 +1,10 @@
 # Routes Documentation
 
+## Backend Server
+
+- **Base URL:** `http://localhost:3000`
+- **Description:** The backend server where all routes are hosted.
+
 ## User Routes
 
 ### Register User
@@ -71,6 +76,11 @@
 - **Functionality:** Resets user password.
 - **Middleware:** None
 - **Controller:** `resetPassword`
+
+### Sign in with Google
+
+- **Route:** `GET /auth/google`
+- **Functionality:** Initiates sign-in process with Google.
 
 ## Stats Routes
 
