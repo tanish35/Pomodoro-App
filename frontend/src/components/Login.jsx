@@ -5,7 +5,7 @@ import { styles } from "../style";
 import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "./hoc";
 import { slideIn } from "../utils/motions";
-import {Button} from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
 const Login = () => {
   const formRef = useRef();
@@ -73,52 +73,55 @@ const Login = () => {
 
           <div className="flex">
             <Link
-            to='/forgot'
-            className='flex items-center gap-2 text-white'
-            onClick={() => {
-              setActive("");
-              window.scrollTo(0, 0);
-            }}>
+              to="/forgot"
+              className="flex items-center gap-2 text-white"
+              onClick={() => {
+                setActive("");
+                window.scrollTo(0, 0);
+              }}
+            >
               Forgot Password?
             </Link>
-            &nbsp &nbsp &nbsp  &nbsp
+            &nbsp &nbsp &nbsp &nbsp
             <Link
-            to='/SignUp'
-            className='flex items-center gap-2 text-white'
-            onClick={() => {
-              setActive("");
-              window.scrollTo(0, 0);
-            }}>
+              to="/SignUp"
+              className="flex items-center gap-2 text-white"
+              onClick={() => {
+                setActive("");
+                window.scrollTo(0, 0);
+              }}
+            >
               New User?
             </Link>
           </div>
 
-
           <Button
-            type='submit'
+            type="submit"
             variant="bordered"
-            className='bg-purple-950 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary'
+            className="bg-purple-950 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"
           >
             {loading ? "Loggin you in..." : "Login"}
           </Button>
 
-
-          <Button
-          className="bg-slate-950 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary">
-          <div className="flex">
-            <img className="h-6 w-6" src="https://e1.pxfuel.com/desktop-wallpaper/297/673/desktop-wallpaper-google-g-logo-google-logo-black-background.jpg" alt="google" />
+          <Button className="bg-slate-950 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary">
+            <div className="flex">
+              <img
+                className="h-6 w-6"
+                src="https://e1.pxfuel.com/desktop-wallpaper/297/673/desktop-wallpaper-google-g-logo-google-logo-black-background.jpg"
+                alt="google"
+              />
               <Link
-              to='http://localhost:3000/auth/google'
-              className='flex items-center gap-2 text-gray-500'
-              onClick={() => {
+                to="http://localhost:3000/auth/google"
+                className="flex items-center gap-2 text-gray-500"
+                onClick={() => {
                   setActive("");
                   window.scrollTo(0, 0);
-              }}>
-                  {loading ? "Loading..." : "Login with Google"}
+                }}
+              >
+                {loading ? "Loading..." : "Login with Google"}
               </Link>
-          </div>
+            </div>
           </Button>
-          
         </form>
       </motion.div>
 

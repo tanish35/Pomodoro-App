@@ -14,6 +14,7 @@
     "@nextui-org/react": "^2.3.6",
     "@react-three/drei": "^9.105.6",
     "@react-three/fiber": "^8.16.6",
+    "axios": "^1.7.2",
     "framer-motion": "^11.2.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
