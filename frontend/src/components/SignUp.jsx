@@ -79,7 +79,7 @@ const Signup = () => {
             window.scrollTo(0, 0);
           }}>
             Already have an account?
-            <div className="text-blue-900">Signup</div>
+            <div className="text-cyan-200">Login</div>
           </Link>
 
 
