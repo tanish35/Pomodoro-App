@@ -7,7 +7,7 @@ import { SectionWrapper } from "./hoc";
 import { slideIn } from "../utils/motions";
 import {Button} from "@nextui-org/react";
 
-const Login = () => {
+const Signup = () => {
   const formRef = useRef();
   const [form, setForm] = useState({
     name: "",
@@ -40,8 +40,8 @@ const Login = () => {
         variants={slideIn("left", "tween", 0.2, 1)}
         className="flex-[0.75] bg-black-100 p-8 rounded-2xl"
       >
-        <p className={styles.sectionHeadText}>welcome</p>
-        <h3 className="text-2xl">Login</h3>
+        <p className={styles.sectionHeadText}>Create Your Account.</p>
+        <h3 className="text-2xl">SignUp</h3>
 
         <form
           ref={formRef}
@@ -72,24 +72,16 @@ const Login = () => {
           </label>
 
           <Link
-          to='/contact3'
+          to='/signin'
           className='flex items-center gap-2 text-white'
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
           }}>
-            Forgot Password?
+            Already have an account?
+            <div className="text-blue-900">Signup</div>
           </Link>
 
-          <Link
-          to='./SignUp'
-          className='flex items-center gap-2 text-white'
-          onClick={() => {
-            setActive("");
-            window.scrollTo(0, 0);
-          }}>
-            New User?
-          </Link>
 
 
           <Button
@@ -97,20 +89,17 @@ const Login = () => {
             variant="bordered"
             className='bg-purple-950 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary'
           >
-            {loading ? "Loggin you in..." : "Login"}
+            
+            <Link
+            to='/signin'
+            className='flex items-center gap-2 text-white'
+            onClick={() => {
+                setActive("");
+                window.scrollTo(0, 0);
+            }}>
+                {loading ? "Loading..." : "SignUp"}
+            </Link>
           </Button>
-
-
-          <Link
-          to='http://localhost:3000/auth/google'
-          className='flex items-center gap-2 text-gray-500'
-          onClick={() => {
-            setActive("");
-            window.scrollTo(0, 0);
-          }}>
-            <img className="h-6 w-6" src="https://e1.pxfuel.com/desktop-wallpaper/297/673/desktop-wallpaper-google-g-logo-google-logo-black-background.jpg" alt="google" />
-            Login with Google
-          </Link>
           
         </form>
       </motion.div>
@@ -125,4 +114,4 @@ const Login = () => {
   );
 };
 
-export default SectionWrapper(Login, "contact");
+export default SectionWrapper(Signup, "contact");
