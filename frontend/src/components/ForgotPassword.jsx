@@ -2,12 +2,11 @@ import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { styles } from "../style";
-import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "./hoc";
 import { slideIn } from "../utils/motions";
 import {Button} from "@nextui-org/react";
 
-const Login = () => {
+const ForgotPassword = () => {
   const formRef = useRef();
   const [form, setForm] = useState({
     name: "",
@@ -40,8 +39,8 @@ const Login = () => {
         variants={slideIn("left", "tween", 0.2, 1)}
         className="flex-[0.75] bg-black-100 p-8 rounded-2xl"
       >
-        <p className={styles.sectionHeadText}>welcome</p>
-        <h3 className="text-2xl">Login</h3>
+        <p className={styles.sectionHeadText}>Forgot Password?</p>
+        <h3 className="text-2xl">Create New Password</h3>
 
         <form
           ref={formRef}
@@ -55,40 +54,30 @@ const Login = () => {
               name="name"
               value={form.name}
               onChange={handleChange}
-              placeholder="yes type it here"
+              placeholder="Enter your registered mail"
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
           <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Password</span>
+            <span className="text-white font-medium mb-4">New Password</span>
             <input
               rows={7}
               name="message"
               value={form.message}
               onChange={handleChange}
-              placeholder="put down your secret here"
+              placeholder="Enter new password"
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
 
           <Link
-          to='/contact3'
-          className='flex items-center gap-2 text-white'
+          to='/signin'
+          className='flex items-center gap-2 text-cyan-300'
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
           }}>
-            Forgot Password?
-          </Link>
-
-          <Link
-          to='./SignUp'
-          className='flex items-center gap-2 text-white'
-          onClick={() => {
-            setActive("");
-            window.scrollTo(0, 0);
-          }}>
-            New User?
+            SignIn
           </Link>
 
 
@@ -97,27 +86,12 @@ const Login = () => {
             variant="bordered"
             className='bg-purple-950 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary'
           >
-            {loading ? "Loggin you in..." : "Login"}
-          </Button>
-
-
-          <Button>
-          <img className="h-6 w-6" src="https://e1.pxfuel.com/desktop-wallpaper/297/673/desktop-wallpaper-google-g-logo-google-logo-black-background.jpg" alt="google" />
-            <Link
-            to='http://localhost:3000/auth/google'
-            className='flex items-center gap-2 text-gray-500'
-            onClick={() => {
-                setActive("");
-                window.scrollTo(0, 0);
-            }}>
-                {loading ? "Loading..." : "Login with Google"}
-            </Link>
-          </Button>
-          
+            {loading ? "Please Wait..." : "Verify"}
+          </Button>   
         </form>
       </motion.div>
     </div>
   );
 };
 
-export default SectionWrapper(Login, "contact");
+export default SectionWrapper(ForgotPassword, "contact");

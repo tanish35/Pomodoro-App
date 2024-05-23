@@ -40,7 +40,7 @@ const Login = () => {
         variants={slideIn("left", "tween", 0.2, 1)}
         className="flex-[0.75] bg-black-100 p-8 rounded-2xl"
       >
-        <p className={styles.sectionHeadText}>welcome</p>
+        <p className={styles.sectionHeadText}>Welcome</p>
         <h3 className="text-2xl">Login</h3>
 
         <form
@@ -71,25 +71,27 @@ const Login = () => {
             />
           </label>
 
-          <Link
-          to='/contact3'
-          className='flex items-center gap-2 text-white'
-          onClick={() => {
-            setActive("");
-            window.scrollTo(0, 0);
-          }}>
-            Forgot Password?
-          </Link>
-
-          <Link
-          to='./SignUp'
-          className='flex items-center gap-2 text-white'
-          onClick={() => {
-            setActive("");
-            window.scrollTo(0, 0);
-          }}>
-            New User?
-          </Link>
+          <div className="flex">
+            <Link
+            to='/forgot'
+            className='flex items-center gap-2 text-white'
+            onClick={() => {
+              setActive("");
+              window.scrollTo(0, 0);
+            }}>
+              Forgot Password?
+            </Link>
+            &nbsp &nbsp &nbsp  &nbsp
+            <Link
+            to='/SignUp'
+            className='flex items-center gap-2 text-white'
+            onClick={() => {
+              setActive("");
+              window.scrollTo(0, 0);
+            }}>
+              New User?
+            </Link>
+          </div>
 
 
           <Button
@@ -101,16 +103,21 @@ const Login = () => {
           </Button>
 
 
-          <Link
-          to='http://localhost:3000/auth/google'
-          className='flex items-center gap-2 text-gray-500'
-          onClick={() => {
-            setActive("");
-            window.scrollTo(0, 0);
-          }}>
+          <Button
+          className="bg-slate-950 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary">
+          <div className="flex">
             <img className="h-6 w-6" src="https://e1.pxfuel.com/desktop-wallpaper/297/673/desktop-wallpaper-google-g-logo-google-logo-black-background.jpg" alt="google" />
-            Login with Google
-          </Link>
+              <Link
+              to='http://localhost:3000/auth/google'
+              className='flex items-center gap-2 text-gray-500'
+              onClick={() => {
+                  setActive("");
+                  window.scrollTo(0, 0);
+              }}>
+                  {loading ? "Loading..." : "Login with Google"}
+              </Link>
+          </div>
+          </Button>
           
         </form>
       </motion.div>
