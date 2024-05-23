@@ -11,6 +11,10 @@ class PredictRequest(BaseModel):
     totalHours: float
     age: int
 
+@app.get("/")
+def read_root():
+    return {"message": "Server is running"}
+
 
 @app.post("/predict")
 def predict_endpoint(request: PredictRequest):
