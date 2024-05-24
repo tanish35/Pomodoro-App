@@ -2,6 +2,12 @@
 
 Welcome to our Pomodoro App! This productivity tool is designed to help you manage your time effectively using the Pomodoro Technique. With this app, you can break your work into intervals, traditionally 25 minutes in length, separated by short breaks.
 
+**Backend URL**: THE BACKEND IS LIVE.
+
+   ```bash
+   https://pomodoro-app-1.onrender.com
+   ```
+
 # Getting Started
 
 # Using Docker
