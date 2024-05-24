@@ -4,7 +4,8 @@ import Layout from './components/Layout/Layout';
 import Calendar from './pages/Calendar/Calendar';
 import Dashboard from './pages/Dashboard/Dashboard';
 import DataGrid from './pages/DataGrid/DataGrid';
-import { Login } from "./components";
+import { Login, SignUp } from "./components";
+import ForgotPassword from './components/ForgotPassword';
 
 
 
@@ -17,8 +18,9 @@ const App = () => {
         <div className='relative z-0'>
         
       <Routes>
-        {/* <Route path="/" element={<Login/>}/> */}
         <Route path="/signin" element={<Login/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
+        <Route path="/forgot" element={<ForgotPassword/>}/>
 
         <Route path="/" element={<MainLayout/>}>
 
@@ -34,29 +36,6 @@ const App = () => {
       </div>
     </BrowserRouter>
   );
-  return (
-    <>
-
-    <BrowserRouter>
-      <Routes>
-   
-        <Route path="/signin" element={<Login/>}/>
-        
-
-        <Route path="/"  element={<MainLayout />}>
-
-          <Route path="dashboard" element={<Dashboard/>}/>
-          {/* <Route path="calendar" element={<Calendar/>}/> */}
-          {/* <Route path="users" element={<DataGrid/>}/> */}
-          
-        </Route>
-      
-  
-
-      </Routes>
-    </BrowserRouter>
-    </>
-  )
 }
 
 function MainLayout() {

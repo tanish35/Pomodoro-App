@@ -1,19 +1,20 @@
 import moment from "moment/moment";
 
+
 export const cardsData = [
   {
     title: "Total Time Studied",
     // change: 24,
-    amount: 42056,
+    amount: 100
   },
   {
     title: "Max Time Studied",
     // change: -14,
-    amount: 52125.03,
+    amount: 100,
   },
   {
     title: "Streak",
-    amount: 10
+    amount: 100,
   }
 ];
 
