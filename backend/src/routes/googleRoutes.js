@@ -27,7 +27,8 @@ router.get(
       useHttpOnly: true,
       sameSite: "lax",
     });
-    delete req.user.password;
+
+
     res.redirect("http://localhost:5173/dashboard");
   }
 );

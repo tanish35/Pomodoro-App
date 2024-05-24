@@ -6,7 +6,7 @@ import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "./hoc";
 import { slideIn } from "../utils/motions";
 import { Button } from "@nextui-org/react";
-import { BACKEND_URL } from "../config";
+
 import axios from "axios";
 
 const Login = () => {
@@ -35,7 +35,7 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post(`${BACKEND_URL}/api/user/login`, {
+      const res = await axios.post(`/api/user/login`, {
         withCredentials: true,
         email: email,
         password: password,
@@ -117,7 +117,9 @@ const Login = () => {
             >
               Forgot Password?
             </Link>
+
             &nbsp;
+
             <Link
               to="/SignUp"
               className="flex items-center gap-2 text-white"
@@ -133,8 +135,10 @@ const Login = () => {
           <Button
             type="submit"
             variant="bordered"
+
             // className="bg-purple-700 hover:bg-purple-900 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"
             className= {loading ? "bg-purple-900 cursor-not-allowed py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary" : "bg-purple-600 hover:bg-purple-900 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"}
+
           >
             {loading ? "Loggin you in..." : "Login"}
           </Button>

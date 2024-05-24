@@ -6,7 +6,7 @@ import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "./hoc";
 import { slideIn } from "../utils/motions";
 import {Button} from "@nextui-org/react";
-import { BACKEND_URL } from "../config";
+
 import axios from "axios";
 
 const Signup = () => {
@@ -18,6 +18,7 @@ const Signup = () => {
   });
 
   const [loading, setLoading] = useState(false);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,7 +27,7 @@ const Signup = () => {
     e.preventDefault();
     setLoading(true);
     try {
-        const res = await axios.post(`${BACKEND_URL}/api/user/login`, {
+        const res = await axios.post(`/api/user/login`, {
             withCredentials: true,
             email: email,
             password: password,
@@ -58,6 +59,20 @@ const Signup = () => {
         setLoading(false);
         alert("Could not login. Please try again.")
     }
+
+
+  const handleChange = (e) => {
+    const { target } = e;
+    const { name, value } = target;
+
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
+
+  
+
   };
 
   return (
@@ -81,9 +96,11 @@ const Signup = () => {
             <input
               type="text"
               name="name"
+
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder="Enter your Email"
+
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
@@ -91,11 +108,13 @@ const Signup = () => {
             <span className="text-white font-medium mb-4">Password</span>
             <input
               rows={7}
+
               name="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
               placeholder="put down your secret here"
               className="bg-tertiary  py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+
             />
           </label>
 
@@ -115,18 +134,27 @@ const Signup = () => {
           <Button
             type='submit'
             variant="bordered"
+
             className= {loading ? "bg-purple-900 cursor-not-allowed py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary" : "bg-purple-600 hover:bg-purple-900 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"}
           >
             
             {/* <Link
+
+            className='bg-purple-950 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary'
+          >
+            
+            <Link
+
             to='/signin'
             className='flex items-center gap-2 text-white'
             onClick={() => {
                 setActive("");
                 window.scrollTo(0, 0);
+
             }}> */}
                 {loading ? "Loading..." : "SignUp"}
             {/* </Link> */}
+
           </Button>
           
         </form>
@@ -142,4 +170,6 @@ const Signup = () => {
   );
 };
 
+
 export default SectionWrapper(Signup, "contact");
+
