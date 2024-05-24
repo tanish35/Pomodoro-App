@@ -5,7 +5,7 @@ import Calendar from './pages/Calendar/Calendar';
 import Dashboard from './pages/Dashboard/Dashboard';
 import DataGrid from './pages/DataGrid/DataGrid';
 import { ForgotPassword, Login, SignUp } from "./components";
-
+import TimerPomodoro from './views/Pomodoro';
 
 
 const App = () => {
@@ -21,6 +21,7 @@ const App = () => {
         <Route path="/signin" element={<Login/>}/>
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/forgot" element={<ForgotPassword/>}/>
+        <Route path="/timer" element={<TimerPomodoro/>}/>
 
         <Route path="/" element={<MainLayout/>}>
 
