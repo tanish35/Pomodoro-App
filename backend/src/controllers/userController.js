@@ -16,7 +16,7 @@ const registerUser = asyncHandler(async (req, res) => {
     },
   });
   if (userExists) {
-    return res.status(422).json({ error: "User already exists" });
+    return res.status(409).json({ error: "User already exists" });
   }
   const usernameExists = await prisma.User.findUnique({
     where: {
@@ -24,7 +24,7 @@ const registerUser = asyncHandler(async (req, res) => {
     },
   });
   if (usernameExists) {
-    return res.status(422).json({ error: "Username already exists" });
+    return res.status(406).json({ error: "Username already exists" });
   }
   const user = await prisma.TempUser.create({
     data: {
@@ -99,7 +99,7 @@ const loginUser = asyncHandler(async (req, res) => {
   }
   const isPasswordCorrect = bcrypt.compareSync(password, user.password);
   if (!isPasswordCorrect) {
-    res.sendStatus(401);
+    res.sendStatus(402);
     return;
   }
   const exp = Date.now() + 1000 * 60 * 60 * 24 * 30;
@@ -285,6 +285,11 @@ const resetPassword = asyncHandler(async (req, res) => {
   res.sendStatus(200);
 });
 
+const fetchUsername = asyncHandler(async (req, res) => {
+  const { username } = req.user;
+  res.json({ username });
+});
+
 export {
   registerUser,
   loginUser,
@@ -296,4 +301,5 @@ export {
   verifyUser,
   forgotPassword,
   resetPassword,
+  fetchUsername,
 };

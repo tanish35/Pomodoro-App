@@ -7,6 +7,8 @@ import { SectionWrapper } from "./hoc";
 import { slideIn } from "../utils/motions";
 import {Button} from "@nextui-org/react";
 
+import axios from "axios";
+
 const Signup = () => {
   const formRef = useRef();
   const [form, setForm] = useState({
@@ -16,6 +18,48 @@ const Signup = () => {
   });
 
   const [loading, setLoading] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+        const res = await axios.post(`/api/user/login`, {
+            withCredentials: true,
+            email: email,
+            password: password,
+        });
+        if (!res.data) {
+            setLoading(false);
+            alert("Server down. Please try again later.");
+        }
+        if (res.status === 200) {
+            console.log("Logged in");
+            setLoading(false);
+            window.location.href = "/dashboard";
+        }
+        else if (res.status === 422) {
+            setLoading(false);
+            alert("Enter all the feilds");
+        }
+        else if (res.status === 409) {
+            setLoading(false);
+            alert("User already exists. Please login.");
+        }
+        else if (res.status === 406) {
+            setLoading(false);
+            alert("Username already exists. Please try with different username.");
+        }
+    }
+    catch (err) {
+        console.log(err);
+        setLoading(false);
+        alert("Could not login. Please try again.")
+    }
+
 
   const handleChange = (e) => {
     const { target } = e;
@@ -27,9 +71,8 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
+  
+
   };
 
   return (
@@ -53,9 +96,11 @@ const Signup = () => {
             <input
               type="text"
               name="name"
-              value={form.name}
-              onChange={handleChange}
-              placeholder="yes type it here"
+
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              placeholder="Enter your Email"
+
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
@@ -63,11 +108,13 @@ const Signup = () => {
             <span className="text-white font-medium mb-4">Password</span>
             <input
               rows={7}
-              name="message"
-              value={form.message}
-              onChange={handleChange}
+
+              name="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               placeholder="put down your secret here"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-tertiary  py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+
             />
           </label>
 
@@ -87,18 +134,27 @@ const Signup = () => {
           <Button
             type='submit'
             variant="bordered"
+
+            className= {loading ? "bg-purple-900 cursor-not-allowed py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary" : "bg-purple-600 hover:bg-purple-900 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"}
+          >
+            
+            {/* <Link
+
             className='bg-purple-950 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary'
           >
             
             <Link
+
             to='/signin'
             className='flex items-center gap-2 text-white'
             onClick={() => {
                 setActive("");
                 window.scrollTo(0, 0);
-            }}>
+
+            }}> */}
                 {loading ? "Loading..." : "SignUp"}
-            </Link>
+            {/* </Link> */}
+
           </Button>
           
         </form>
@@ -114,4 +170,6 @@ const Signup = () => {
   );
 };
 
+
 export default SectionWrapper(Signup, "contact");
+

@@ -27,6 +27,8 @@ router.get(
       useHttpOnly: true,
       sameSite: "lax",
     });
+
+
     res.redirect("http://localhost:5173/dashboard");
   }
 );
