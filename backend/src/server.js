@@ -32,6 +32,9 @@ app.use("/api/stats", statsRoutes);
 app.use("/api/user", userRoutes);
 app.use("/auth/google", googleRoutes);
 app.use("/deletetemp", deleteTemp);
+app.get("/",(req,res)=>{
+  res.send("Backend is Live ");
+});
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
 });
