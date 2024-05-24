@@ -37,7 +37,7 @@ const registerUser = asyncHandler(async (req, res) => {
   });
   const exp = Date.now() + 1000 * 60 * 5;
   const token = jwt.sign({ sub: user.id, exp }, process.env.SECRET);
-  const url = `http://localhost:3000/api/user/verify/${token}`;
+  const url = `https://pomodoro-app-1.onrender.com/api/user/verify/${token}`;
   const htmlContent = `<a href="${url}">Verify using this link</a>`;
   await sendMail(email, htmlContent);
   res.sendStatus(200);

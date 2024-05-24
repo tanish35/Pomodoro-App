@@ -44,28 +44,24 @@ const Login = () => {
         console.log("Logged in");
         setLoading(false);
         window.location.href = "/dashboard";
-      }
-      else if (res.status === 401) {
+      } else if (res.status === 401) {
         setLoading(false);
         alert("You have logged in with Google. Please login with Google.");
-      }
-      else if (res.status === 404) {
+      } else if (res.status === 404) {
         setLoading(false);
-        alert("User not found. Please sign up or enter your details correctly.");
-      }
-      else if (res.status === 402) {
+        alert(
+          "User not found. Please sign up or enter your details correctly."
+        );
+      } else if (res.status === 402) {
         setLoading(false);
         alert("Incorrect Password. Please try again.");
       }
-    }
-    catch (err) {
+    } catch (err) {
       console.log(err);
       setLoading(false);
-      alert("Could not login. Please try again.")
+      alert("Could not login. Please try again.");
     }
   };
-
-  
 
   return (
     <div
@@ -117,9 +113,7 @@ const Login = () => {
             >
               Forgot Password?
             </Link>
-
             &nbsp;
-
             <Link
               to="/SignUp"
               className="flex items-center gap-2 text-white"
@@ -135,10 +129,12 @@ const Login = () => {
           <Button
             type="submit"
             variant="bordered"
-
             // className="bg-purple-700 hover:bg-purple-900 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"
-            className= {loading ? "bg-purple-900 cursor-not-allowed py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary" : "bg-purple-600 hover:bg-purple-900 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"}
-
+            className={
+              loading
+                ? "bg-purple-900 cursor-not-allowed py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"
+                : "bg-purple-600 hover:bg-purple-900 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"
+            }
           >
             {loading ? "Loggin you in..." : "Login"}
           </Button>
@@ -151,7 +147,7 @@ const Login = () => {
                 alt="google"
               />
               <Link
-                to="http://localhost:3000/auth/google"
+                to="https://pomodoro-app-1.onrender.com/auth/google"
                 className="flex items-center gap-2 text-gray-500"
                 onClick={() => {
                   setActive("");
