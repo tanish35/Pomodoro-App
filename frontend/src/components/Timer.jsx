@@ -143,19 +143,9 @@ export default function Timer() {
               handleShortBreak();
               setSelectedTimer("shortBreak");
             }}
-            label="Short Break"
+            label="Break"
             isSelected={selectedTimer === "shortBreak"}
             animationClass="animate__backInDown"
-          />
-
-          <ButtonsTimer
-            onClick={() => {
-              handleLongBreak();
-              setSelectedTimer("longBreak");
-            }}
-            label="Long Break"
-            isSelected={selectedTimer === "longBreak"}
-            animationClass="animate__backInRight"
           />
         </div>
         <h1 className="text-white text-8xl sm:text-9xl m-0 animate__animated animate__fadeIn">
