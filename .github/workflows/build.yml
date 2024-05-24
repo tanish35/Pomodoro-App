@@ -1,0 +1,59 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    services:
+      mongodb:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd="mongo --eval 'db.runCommand({ ping: 1 })'"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Cache backend node modules
+      uses: actions/cache@v2
+      with:
+        path: backend/node_modules
+        key: backend-${{ runner.os }}-node_modules-${{ hashFiles('backend/package-lock.json') }}
+        restore-keys: |
+          backend-${{ runner.os }}-node_modules-
+
+    - name: Cache frontend node modules
+      uses: actions/cache@v2
+      with:
+        path: frontend/node_modules
+        key: frontend-${{ runner.os }}-node_modules-${{ hashFiles('frontend/package-lock.json') }}
+        restore-keys: |
+          frontend-${{ runner.os }}-node_modules-
+
+    - name: Install backend dependencies
+      run: cd backend && npm install
+
+    - name: Install frontend dependencies
+      run: cd frontend && npm install
+
+    - name: Build frontend
+      run: cd frontend && npm run build
