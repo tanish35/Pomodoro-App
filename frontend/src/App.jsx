@@ -4,8 +4,7 @@ import Layout from './components/Layout/Layout';
 import Calendar from './pages/Calendar/Calendar';
 import Dashboard from './pages/Dashboard/Dashboard';
 import DataGrid from './pages/DataGrid/DataGrid';
-import { Login, SignUp } from "./components";
-import ForgotPassword from './components/ForgotPassword';
+import { ForgotPassword, Login, SignUp } from "./components";
 
 
 
