@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://localhost:3001", // Replace with the URL of your React app
+    origin: "http://localhost:5173", // Replace with the URL of your React app
     credentials: true, // Enable credentials (cookies)
   })
 );
@@ -32,7 +32,7 @@ app.use("/api/stats", statsRoutes);
 app.use("/api/user", userRoutes);
 app.use("/auth/google", googleRoutes);
 app.use("/deletetemp", deleteTemp);
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
   res.send("Backend is Live ");
 });
 app.listen(process.env.PORT, () => {

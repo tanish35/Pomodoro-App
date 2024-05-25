@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from "react";
 
 const TimerContext = createContext();
 
@@ -11,11 +11,11 @@ export const TimerProvider = ({ children }) => {
   const [currentTimerType, setCurrentTimerType] = useState("pomodoro");
   const [autoStartBreak, setAutoStartBreak] = useState(false);
   const [autoStartPomodoro, setAutoStartPomodoro] = useState(false);
-  const [selectedTimer, setSelectedTimer] = useState("pomodoro")
+  const [selectedTimer, setSelectedTimer] = useState("pomodoro");
 
   const updateTimer = (newTime) => {
-    setTimer(newTime)
-  }
+    setTimer(newTime);
+  };
 
   return (
     <TimerContext.Provider
@@ -38,7 +38,7 @@ export const TimerProvider = ({ children }) => {
         autoStartPomodoro,
         setAutoStartPomodoro,
         setSelectedTimer,
-        selectedTimer
+        selectedTimer,
       }}
     >
       {children}

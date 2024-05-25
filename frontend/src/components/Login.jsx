@@ -12,18 +12,14 @@ import axios from "axios";
 const Login = () => {
   const formRef = useRef();
   const [form, setForm] = useState({
-    name: "",
     email: "",
-    message: "",
+    password: "",
   });
 
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   const handleChange = (e) => {
-    const { target } = e;
-    const { name, value } = target;
+    const { name, value } = e.target;
 
     setForm({
       ...form,
@@ -35,11 +31,16 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post(`/api/user/login`, {
-        withCredentials: true,
-        email: email,
-        password: password,
-      });
+      const res = await axios.post(
+        `/api/user/login`,
+        {
+          email: form.email,
+          password: form.password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
       if (res.status === 200) {
         console.log("Logged in");
         setLoading(false);
@@ -83,21 +84,21 @@ const Login = () => {
             <span className="text-white font-medium mb-4">Email</span>
             <input
               type="text"
-              name="name"
-              value={form.name}
+              name="email"
+              value={form.email}
               onChange={handleChange}
-              placeholder="yes type it here"
+              placeholder="Type your email here"
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
           <label className="flex flex-col">
             <span className="text-white font-medium mb-4">Password</span>
             <input
-              rows={7}
-              name="message"
-              value={form.message}
+              type="password"
+              name="password"
+              value={form.password}
               onChange={handleChange}
-              placeholder="put down your secret here"
+              placeholder="Type your password here"
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
@@ -113,36 +114,9 @@ const Login = () => {
             >
               Forgot Password?
             </Link>
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
             <Link
               to="/SignUp"
-              className="flex items-center gap-2 text-white"
+              className="flex items-center gap-2 text-white ml-auto"
               onClick={() => {
                 setActive("");
                 window.scrollTo(0, 0);
@@ -155,26 +129,25 @@ const Login = () => {
           <Button
             type="submit"
             variant="bordered"
-            // className="bg-purple-700 hover:bg-purple-900 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"
             className={
               loading
                 ? "bg-purple-900 cursor-not-allowed py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"
                 : "bg-purple-600 hover:bg-purple-900 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"
             }
           >
-            {loading ? "Loggin you in..." : "Login"}
+            {loading ? "Logging you in..." : "Login"}
           </Button>
 
           <Button className="bg-slate-950 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary">
-            <div className="flex">
+            <div className="flex items-center gap-2">
               <img
                 className="h-6 w-6"
                 src="https://e1.pxfuel.com/desktop-wallpaper/297/673/desktop-wallpaper-google-g-logo-google-logo-black-background.jpg"
                 alt="google"
               />
               <Link
-                to="https://pomodoro-app-1.onrender.com/auth/google"
-                className="flex items-center gap-2 text-gray-500"
+                to="https://api.tanish.me/auth/google"
+                className="text-gray-500"
                 onClick={() => {
                   setActive("");
                   window.scrollTo(0, 0);

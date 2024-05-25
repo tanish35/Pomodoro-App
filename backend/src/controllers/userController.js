@@ -37,7 +37,7 @@ const registerUser = asyncHandler(async (req, res) => {
   });
   const exp = Date.now() + 1000 * 60 * 5;
   const token = jwt.sign({ sub: user.id, exp }, process.env.SECRET);
-  const url = `https://pomodoro-app-1.onrender.com/api/user/verify/${token}`;
+  const url = `https://api.tanish.me/api/user/verify/${token}`;
   const htmlContent = `<a href="${url}">Verify using this link</a>`;
   await sendMail(email, htmlContent);
   res.sendStatus(200);
@@ -70,7 +70,7 @@ const verifyUser = asyncHandler(async (req, res) => {
       id: decoded.sub,
     },
   });
-  res.sendStatus(200);
+  res.redirect("https://localhost:5173/signin");
 });
 
 const loginUser = asyncHandler(async (req, res) => {
@@ -108,7 +108,7 @@ const loginUser = asyncHandler(async (req, res) => {
     expires: new Date(exp),
     secure: false,
     useHttpOnly: true,
-    sameSite: "lax",
+    sameSite: "none",
   });
   delete user.password;
   res.json(user);

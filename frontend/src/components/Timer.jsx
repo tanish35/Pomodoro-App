@@ -6,6 +6,7 @@ import breakSound from "../assets/EndSound.mp3";
 import { useTimerContext } from "./TimerContext";
 import "animate.css";
 import { ButtonsTimer } from "./ButtonsTimer";
+import axios from "axios";
 
 export default function Timer() {
   const {
@@ -25,6 +26,7 @@ export default function Timer() {
   } = useTimerContext();
 
   const [activeIcon, setActiveIcon] = useState(null);
+  const [timePassed, setTimePassed] = useState(0); // New state to store time passed
 
   useEffect(() => {
     let intervalId;
@@ -37,6 +39,7 @@ export default function Timer() {
     if (isRunning && timer > 0) {
       intervalId = setInterval(() => {
         setTimer((prevTime) => prevTime - 1);
+        setTimePassed((prevTimePassed) => prevTimePassed + 1); // Update time passed
       }, 1000);
     } else if (timer === 0) {
       playSound();
@@ -98,10 +101,19 @@ export default function Timer() {
     setActiveIcon("stop");
   };
 
-  const handleReset = () => {
+  const handleReset = async () => {
     setIsRunning(false);
     setTimer(initialTimeFocus);
     setActiveIcon("reset");
+    await axios.post(
+      "/api/stats",
+      {
+        minutes: Math.floor(timePassed / 60),
+      },
+      {
+        withCredentials: true,
+      }
+    );
   };
 
   const handleShortBreak = () => {
@@ -114,12 +126,6 @@ export default function Timer() {
     setIsRunning(false);
     setTimer(initialTimeFocus);
     setCurrentTimerType("pomodoro");
-  };
-
-  const handleLongBreak = () => {
-    setIsRunning(false);
-    setTimer(longBreak);
-    setCurrentTimerType("longBreak");
   };
 
   const buttonStyles = "cursor-pointer color-white opacity-50 duration-300";

@@ -25,10 +25,8 @@ router.get(
       expires: new Date(exp),
       secure: false,
       useHttpOnly: true,
-      sameSite: "lax",
+      sameSite: "none",
     });
-
-
     res.redirect("http://localhost:5173/dashboard");
   }
 );
