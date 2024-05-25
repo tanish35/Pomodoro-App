@@ -25,7 +25,7 @@ router.get(
       expires: new Date(exp),
       secure: true,
       useHttpOnly: true,
-      sameSite: "lax",
+      sameSite: "none",
     });
     res.send("Logged in with Google");
   }
