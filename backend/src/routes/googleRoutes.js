@@ -23,9 +23,9 @@ router.get(
     const token = jwt.sign({ sub: req.user.id, exp }, process.env.SECRET);
     res.cookie("Authorization", token, {
       expires: new Date(exp),
-      secure: false,
+      secure: true,
       useHttpOnly: true,
-      sameSite: "none",
+      sameSite: "lax",
     });
     res.redirect("https://app.tanish.me/dashboard");
   }
