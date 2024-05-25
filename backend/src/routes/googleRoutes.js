@@ -27,7 +27,7 @@ router.get(
       useHttpOnly: true,
       sameSite: "lax",
     });
-    res.redirect("https://app.tanish.me/dashboard");
+    res.send("Logged in with Google");
   }
 );
 
