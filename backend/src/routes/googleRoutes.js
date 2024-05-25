@@ -27,7 +27,7 @@ router.get(
       useHttpOnly: true,
       sameSite: "none",
     });
-    res.redirect("http://localhost:5173/dashboard");
+    res.redirect("https://app.tanish.me/dashboard");
   }
 );
 

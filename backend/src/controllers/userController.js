@@ -70,7 +70,7 @@ const verifyUser = asyncHandler(async (req, res) => {
       id: decoded.sub,
     },
   });
-  res.redirect("https://localhost:5173/signin");
+  res.redirect("https://app.tanish.me/signin");
 });
 
 const loginUser = asyncHandler(async (req, res) => {

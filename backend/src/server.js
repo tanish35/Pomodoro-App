@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // Replace with the URL of your React app
+    origin: "https://app.tanish.me", // Replace with the URL of your React app
     credentials: true, // Enable credentials (cookies)
   })
 );
