@@ -2,7 +2,7 @@ import prisma from "../lib/prisma.js";
 import asyncHandler from "express-async-handler";
 
 const saveStats = asyncHandler(async (req, res) => {
-  const { minutes } = req.body;
+  const { minutes, task } = req.body;
   try {
     const user = await prisma.User.findUnique({
       where: {
@@ -62,6 +62,7 @@ const saveStats = asyncHandler(async (req, res) => {
       data: {
         timeStudied: Number(minutes),
         date: new Date(),
+        task,
         user: {
           connect: {
             id: req.user.id,

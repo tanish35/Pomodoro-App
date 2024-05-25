@@ -45,6 +45,7 @@ model History {
   userId      String
   date        DateTime
   timeStudied Int
+  task        String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
