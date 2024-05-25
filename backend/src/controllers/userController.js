@@ -104,18 +104,13 @@ const loginUser = asyncHandler(async (req, res) => {
   }
   const exp = Date.now() + 1000 * 60 * 60 * 24 * 30;
   const token = jwt.sign({ sub: user.id, exp }, process.env.SECRET);
-  res.cookie("Authorization", token, {
-    expires: new Date(exp),
-    secure: true,
-    useHttpOnly: true,
-    sameSite: "none",
-  });
+  req.session.token = token; // Store JWT token in session
   delete user.password;
   res.json(user);
 });
 
 const signOut = asyncHandler(async (req, res) => {
-  res.clearCookie("Authorization");
+  res.clearCookie("connect.sid");
   res.sendStatus(200);
 });
 
