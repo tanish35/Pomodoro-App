@@ -23,7 +23,7 @@ router.get(
     const token = jwt.sign({ sub: req.user.id, exp }, process.env.SECRET);
     res.cookie("Authorization", token, {
       expires: new Date(exp),
-      secure: true,
+      secure: false,
       useHttpOnly: true,
       sameSite: "none",
     });
