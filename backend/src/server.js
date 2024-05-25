@@ -23,13 +23,9 @@ app.use(
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: {
-      secure: false, // Set to false since frontend is served over HTTP
-      maxAge: 365 * 24 * 60 * 60 * 1000, // Expires in 1 year
-    },
+    cookie: { secure: false },
   })
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
 app.use("/api/stats", statsRoutes);
