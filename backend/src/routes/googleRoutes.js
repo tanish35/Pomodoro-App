@@ -21,12 +21,7 @@ router.get(
     }
     const exp = Date.now() + 1000 * 60 * 60 * 24 * 30;
     const token = jwt.sign({ sub: req.user.id, exp }, process.env.SECRET);
-    res.cookie("Authorization", token, {
-      expires: new Date(exp),
-      secure: true,
-      useHttpOnly: true,
-      sameSite: "none",
-    });
+     req.session.token = token; // Store JWT token in session
     res.redirect("http://localhost:5173/dashboard");
   }
 );
