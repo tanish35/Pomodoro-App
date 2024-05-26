@@ -21,32 +21,32 @@
     
 
 
-//     // const historyData = [
-//     //     {
-//     //         maxTimeStudied: 4,
-//     //         date: '2024-05-27',
-//     //         task: 'Mathematics Revision',
-//     //         name: 'John Doe',
-//     //       },
-//     //       {
-//     //         maxTimeStudied: 4,
-//     //         date: '2024-05-26',
-//     //         task: 'Mathematics Revision',
-//     //         name: 'John Doe',
-//     //       },
-//     // {
-//     //     maxTimeStudied: 5,
-//     //     date: '2024-05-26',
-//     //     task: 'Mathematics Revision',
-//     //     name: 'John Doe',
-//     //   },
-//     //   {
-//     //     maxTimeStudied: 6,
-//     //     date: '2024-05-26',
-//     //     task: 'Mathematics Revision',
-//     //     name: 'John Doe',
-//     //   }
-//     // ];
+    // const historyData = [
+    //     {
+    //         maxTimeStudied: 4,
+    //         date: '2024-05-27',
+    //         task: 'Mathematics Revision',
+    //         name: 'John Doe',
+    //       },
+    //       {
+    //         maxTimeStudied: 4,
+    //         date: '2024-05-26',
+    //         task: 'Mathematics Revision',
+    //         name: 'John Doe',
+    //       },
+    // {
+    //     maxTimeStudied: 5,
+    //     date: '2024-05-26',
+    //     task: 'Mathematics Revision',
+    //     name: 'John Doe',
+    //   },
+    //   {
+    //     maxTimeStudied: 6,
+    //     date: '2024-05-26',
+    //     task: 'Mathematics Revision',
+    //     name: 'John Doe',
+    //   }
+    // ];
     
 //     const lastThreeReversed = history.length > 0 ? history.slice(-3).reverse() : [];
     
@@ -83,12 +83,32 @@ const Orders = () => {
   const { history } = useUser();
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (history) {
-      setLoading(false);
-    }
-  }, [history]);
-
+  const historyData = [
+    {
+        maxTimeStudied: 4,
+        date: '2024-05-27',
+        task: 'Mathematics Revision',
+        name: 'John Doe',
+      },
+      {
+        maxTimeStudied: 4,
+        date: '2024-05-26',
+        task: 'Mathematics Revision',
+        name: 'John Doe',
+      },
+{
+    maxTimeStudied: 5,
+    date: '2024-05-26',
+    task: 'Mathematics Revision',
+    name: 'John Doe',
+  },
+  {
+    maxTimeStudied: 6,
+    date: '2024-05-26',
+    task: 'Mathematics Revision',
+    name: 'John Doe',
+  }
+];
   if (!history) {
     return <div>No history to show</div>;
   }
