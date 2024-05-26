@@ -31,7 +31,7 @@ const IndexPage = () => {
     </div>
     )
   }
-  if (userData.length === 0) {
+  if (!userData) {
     return <Navigate to='/signin' />
   }
 
