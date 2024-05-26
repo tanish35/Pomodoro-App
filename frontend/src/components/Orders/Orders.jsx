@@ -78,34 +78,6 @@ const Orders = () => {
   const { loading, history } = useUser();
   // const [loading, setLoading] = useState(true);
 
-  
-
-  const historyData = [
-    {
-      maxTimeStudied: 4,
-      date: "2024-05-27",
-      task: "Mathematics Revision",
-      name: "John Doe",
-    },
-    {
-      maxTimeStudied: 4,
-      date: "2024-05-26",
-      task: "Mathematics Revision",
-      name: "John Doe",
-    },
-    {
-      maxTimeStudied: 5,
-      date: "2024-05-26",
-      task: "Mathematics Revision",
-      name: "John Doe",
-    },
-    {
-      maxTimeStudied: 6,
-      date: "2024-05-26",
-      task: "Mathematics Revision",
-      name: "John Doe",
-    },
-  ];
   if (!history) {
     return <div>No history to show</div>;
   }

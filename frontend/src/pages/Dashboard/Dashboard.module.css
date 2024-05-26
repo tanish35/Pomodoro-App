@@ -4,10 +4,14 @@
   padding: 0rem 4rem;
   display: flex;
   gap: 2rem;
+  height: calc(100vh - 12rem);
+  /* Adjust the height based on your header/footer size */
+  overflow-y: auto;
+  /* Enable vertical scrolling */
 }
 
 .dashboard {
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -19,16 +23,18 @@
   gap: 2rem;
 }
 
-.dashboardHead > .head {
+.dashboardHead>.head {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.head > :nth-child(1) {
+
+.head> :nth-child(1) {
   font-size: 1.5rem;
   font-weight: 500;
 }
-.durationButton > select {
+
+.durationButton>select {
   border: none;
   background: var(--orange-gradient);
   padding: 10px;
@@ -42,29 +48,27 @@
   justify-content: space-between;
 }
 
-.card{
+.card {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.cardHead{
+.cardHead {
   font-size: 1rem;
 }
 
-.cardHead>:nth-child(1)
-{
+.cardHead>:nth-child(1) {
   color: rgba(255, 255, 255, 0.835);
 }
 
-.cardHead>:nth-child(2){
+.cardHead>:nth-child(2) {
   margin-left: 1.5rem;
   font-size: 0.8rem;
   color: var(--green);
 }
 
-.cardAmount>:nth-child(1)
-{
+.cardAmount>:nth-child(1) {
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.776);
   position: relative;
@@ -72,8 +76,7 @@
 }
 
 
-.cardAmount>:nth-child(2)
-{
+.cardAmount>:nth-child(2) {
   font-size: 1.5rem;
   font-weight: bold;
   margin-left: 8px;

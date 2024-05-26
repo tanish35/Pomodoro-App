@@ -5,24 +5,9 @@ import { cardsData, groupNumber, userData } from "../../data";
 import css from "./Dashboard.module.css";
 import { useUser } from "../../hook/useUser";
 import { Navigate } from "react-router-dom";
-import axios from "axios";
-import { BACKEND_URL } from "../../config";
 
 const Dashboard = () => {
   const { loading, userData, stats } = useUser();
-
-  // const res = axios.get(`/api/stats/${username}`, {
-  //   withCredentials: true,
-  // })
-  // const [stats, setStats] = useState([])
-
-  // if (loading) {
-  //   return <div>Loading...</div>
-  // }
-
-  // if (userData.length === 0) {
-  //   return <Navigate to="/signin" />
-  // }
 
   return (
     <div className={css.container}>
