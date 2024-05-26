@@ -288,7 +288,7 @@ const resetPassword = asyncHandler(async (req, res) => {
 });
 
 const fetchUsername = asyncHandler(async (req, res) => {
-  const { email, name, username, pic } = req.user;
+  const { email, name, username, pic, age } = req.user;
   res.json({ email, name, username, pic, age });
 });
 
