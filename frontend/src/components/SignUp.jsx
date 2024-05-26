@@ -33,28 +33,16 @@ const Signup = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post(`/api/user/login`, {
-        withCredentials: true,
-        ...form,
-      });
-      if (!res.data) {
-        setLoading(false);
-        alert("Server down. Please try again later.");
-      }
-      if (res.status === 200) {
-        console.log("Logged in");
-        setLoading(false);
-        window.location.href = "/dashboard";
-      } else if (res.status === 422) {
-        setLoading(false);
-        alert("Enter all the fields");
-      } else if (res.status === 409) {
-        setLoading(false);
-        alert("User already exists. Please login.");
-      } else if (res.status === 406) {
-        setLoading(false);
-        alert("Username already exists. Please try with a different username.");
-      }
+      await axios
+        .post("/api/user/", form, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res.data);
+          setLoading(false);
+          alert("Account created successfully. Please verify email");
+          window.location.href = "/signin";
+        });
     } catch (err) {
       console.log(err);
       setLoading(false);
