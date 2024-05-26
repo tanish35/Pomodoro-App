@@ -123,14 +123,11 @@ export default function Timer() {
       age: res.data.age,
       period: currentHour.toString(),
     };
-    console.log(requestBody);
-
     try {
       const response = await axios.post(
         "https://ai.tanish.me/predict",
         requestBody
       );
-      console.log(response.data.break * 60);
       alert("Switch to break tab to find our suggested break time!");
       setCurrentTimerType("shortBreak");
       setTimer(parseInt(response.data.break) * 60);
