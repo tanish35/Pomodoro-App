@@ -11,12 +11,13 @@ import session from "express-session";
 const app = express();
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: "https://app.tanish.me", // Replace with the URL of your React app
-    credentials: true, // Enable credentials (cookies)
-  })
-);
+const corsOptions = {
+  origin: ["https://app.tanish.me", "http://localhost:5173"],
+  credentials: true // Enable credentials (cookies)
+};
+
+app.use(cors(corsOptions));
+
 app.use(cookieParser());
 app.use(
   session({
