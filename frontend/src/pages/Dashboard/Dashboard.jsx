@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Orders from '../../components/Orders/Orders';
 import Statistics from '../../components/Statistics/Statistics';
-import { cardsData, groupNumber } from '../../data';
+import { cardsData, groupNumber, userData } from '../../data';
 import css from './Dashboard.module.css';
 import { useUser } from '../../hook/useUser';
 import { Navigate } from 'react-router-dom';
@@ -10,16 +10,20 @@ import { BACKEND_URL } from '../../config';
 
 const Dashboard = () => {
 
-  const { username, loading, stats } = useUser();
+  const { loading, userData, stats } = useUser();
+
+  // const res = axios.get(`/api/stats/${username}`, {
+  //   withCredentials: true,
+  // })
   // const [stats, setStats] = useState([])
 
   // if (loading) {
   //   return <div>Loading...</div>
   // }
 
-  // if (!username) {
-  //   return <Navigate to="/signin" />
-  // }
+  if (userData.length === 0) {
+    return <Navigate to="/signin" />
+  }
 
   
 
@@ -42,19 +46,52 @@ const Dashboard = () => {
         </div>
           <div className={css.cards}>
             {
-              stats.map((card, index)=> (
+              cardsData.map((card, index)=> (
                 <div className={css.card}>
                   <div className={css.cardHead}>
                     <span>{card ? card.title : "Test"}</span>
                     {/* <span>+{card.change}</span> */}
                   </div>
 
+                {!loading ?     <div
+      className="bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded h-4 w-16"
+      style={{
+        animation: 'shimmer 1.5s infinite, pulse 1.5s infinite',
+        backgroundSize: '200% 100%',
+      }}
+    ></div>
+ : 
+
+                <div>
+      {card.title === 'Total Time Studied' && (
+        <div className={css.cardAmount}>
+          <span>Hours</span>
+          {stats && stats.totalTimeStudied !== undefined 
+            ? <span>{groupNumber(stats.totalTimeStudied)}</span> 
+            : <span>0</span>}
+        </div>
+      )}
+      {card.title === 'Max Time Studied' && (
+        <div className={css.cardAmount}>
+          <span>Hours</span>
+          {stats && stats.maxTimeStudied !== undefined 
+            ? <span>{groupNumber(stats.maxTimeStudied)}</span> 
+            : <span>0</span>}
+        </div>
+      )}
+      {card.title === 'Streak' && (
+        <div className={css.cardAmount}>
+          <span>Days</span>
+          {stats && stats.streak !== undefined 
+            ? <span>{groupNumber(stats.streak)}</span> 
+            : <span>0</span>}
+        </div>
+      )}
+    </div>
                 
-                  <div className={css.cardAmount}>
-                    {card.title != 'Streak' && <span>Hrs</span>}
-                    {card.title == 'Streak' && <span>Days</span>}
-                    <span>{groupNumber(card ? card.amount : 0)}</span>
-                  </div>
+                }
+                
+                  
                   
                 </div>
               ))
@@ -63,6 +100,7 @@ const Dashboard = () => {
       </div>
 
 
+      {/* {loading ? <div>Loading...</div> : <div className={css.chart}> */}
 
       <Statistics/>
 

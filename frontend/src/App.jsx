@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import DataGrid from './pages/DataGrid/DataGrid';
 import { ForgotPassword, Login, SignUp } from "./components";
 import TimerPomodoro from './views/Pomodoro';
+import IndexPage from './pages/Index/IndexPage';
 
 
 const App = () => {
@@ -18,17 +19,20 @@ const App = () => {
 
         
       <Routes>
+        <Route path="/" element={<IndexPage/>} />
         <Route path="/signin" element={<Login/>}/>
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/forgot" element={<ForgotPassword/>}/>
         <Route path="/timer" element={<TimerPomodoro/>}/>
 
-        <Route path="/" element={<MainLayout/>}>
+
+
+        <Route path="/profile" element={<MainLayout/>}>
 
           <Route path="dashboard" element={<Dashboard/>}/>
           {/* <Route path="calendar" element={<Calendar/>}/> */}
           {/* <Route path="board" element={<BoardPage/>}/> */}
-          {/* <Route path="users" element={<DataGrid/>}/> */}
+          <Route path="users" element={<DataGrid/>}/>
           
         </Route>
 

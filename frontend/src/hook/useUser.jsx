@@ -4,11 +4,12 @@ import { BACKEND_URL } from "../config";
 
 export const useUser = () => {
     const [loading, setLoading] = useState(true);
-    const [userData, setUserData] = useState();
+    const [userData, setUserData] = useState([]);
     const [stats, setStats] = useState([]);
+    const [history, setHistory] = useState([]);
 
     async function getUserData() {
-        const res = await axios.get(`${BACKEND_URL}/api/user/me`, {
+        const res = await axios.get(`/api/user/me`, {
             withCredentials: true,
         });
         setUserData(res.data);
@@ -16,10 +17,23 @@ export const useUser = () => {
             setLoading(false);
             return;
         }
-        const stats = await axios.get(`${BACKEND_URL}/api/stats/${res.data.username}`, {
+        const stats = await axios.get(`/api/stats/${res.data.username}`, {
             withCredentials: true,
         });
+        if (!stats.data) {
+            setStats([]);
+            // setLoading(false);
+        }
         setStats(stats.data);
+
+        const history = await axios.get(`/api/stats/history/${res.data.username}`, {
+            withCredentials: true,
+        });
+        if (!history.data) {
+            setHistory([]);
+            setLoading(false);
+        }
+        setHistory(history.data);
         setLoading(false);
     }
 
@@ -27,5 +41,5 @@ export const useUser = () => {
         getUserData();
     }, []);
 
-    return { loading, userData, stats };
+    return { loading, userData, stats, history};
 }
