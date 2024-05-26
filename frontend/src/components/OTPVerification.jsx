@@ -12,7 +12,7 @@ const OTPVerification = () => {
   const formRef = useRef();
   const [form, setForm] = useState({
     email: "",
-    otp: "",
+    OTP: "",
     password: "",
   });
   const [loading, setLoading] = useState(false);
@@ -77,8 +77,8 @@ const OTPVerification = () => {
             <span className="text-white font-medium mb-4">OTP</span>
             <input
               type="text"
-              name="otp"
-              value={form.otp}
+              name="OTP"
+              value={form.OTP}
               onChange={handleChange}
               placeholder="Enter the OTP sent to your email"
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
