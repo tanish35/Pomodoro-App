@@ -289,7 +289,7 @@ const resetPassword = asyncHandler(async (req, res) => {
 
 const fetchUsername = asyncHandler(async (req, res) => {
   const { email, name, username, pic } = req.user;
-  res.json({ email, name, username, pic });
+  res.json({ email, name, username, pic, age });
 });
 
 export {

@@ -114,6 +114,16 @@ export default function Timer() {
         withCredentials: true,
       }
     );
+    const res = await axios.get("/api/user/me", {
+      withCredentials: true,
+    });
+    const breakTime = await axios.post("https://ai.tanish.me/", {
+      totalHours: "5",
+      age: res.data.age,
+      period: toString(new Date().getHours()),
+    });
+    alert("Switch to break tab to find our suggested break time!");
+    setTimer(breakTime.data.break);
   };
 
   const handleShortBreak = () => {
