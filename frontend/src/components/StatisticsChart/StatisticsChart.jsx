@@ -27,7 +27,7 @@ const StatisticsChart =  () => {
 
     if (history.length > 0) {
         history.map((history) => {
-            x_axis.push(getCurrentDateFormatted(history.date))
+            x_axis.push(history.date.slice(0,10))
             y_axis.push(history.timeStudied)
         })
     }
