@@ -117,7 +117,7 @@ export default function Timer() {
     const res = await axios.get("/api/user/me", {
       withCredentials: true,
     });
-    const breakTime = await axios.post("https://ai.tanish.me/", {
+    const breakTime = await axios.post("https://ai.tanish.me/predict", {
       totalHours: "5",
       age: res.data.age,
       period: toString(new Date().getHours()),
