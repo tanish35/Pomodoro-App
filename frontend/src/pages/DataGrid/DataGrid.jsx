@@ -27,6 +27,10 @@ const DataGrid = () => {
 
     fetchData();
   }, [navigate]);
+  
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const transformedData = useMemo(() => {
     return userData.map((user) => ({

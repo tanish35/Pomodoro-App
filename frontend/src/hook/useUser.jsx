@@ -22,7 +22,7 @@ export const useUser = () => {
     });
     if (!stats.data) {
       setStats([]);
-      // setLoading(false);
+      setLoading(false);
     }
     setStats(stats.data);
 
