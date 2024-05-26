@@ -44,7 +44,7 @@ const Login = () => {
       if (res.status === 200) {
         console.log("Logged in");
         setLoading(false);
-        window.location.href = "/dashboard";
+        window.location.href = "/profile/dashboard";
       } else if (res.status === 401) {
         setLoading(false);
         alert("You have logged in with Google. Please login with Google.");
