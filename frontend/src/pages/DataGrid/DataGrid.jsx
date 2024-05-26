@@ -36,7 +36,7 @@ const DataGrid = () => {
       maxTimeStudied: user.stats[0]?.maxTimeStudied || 0,
       streak: user.stats[0]?.streak || 0,
     }));
-  }, [userData]); // Recalculate transformedData when userData changes
+  }, [userData]);
 
   const columns = useMemo(
     () => [
