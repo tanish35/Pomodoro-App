@@ -130,7 +130,7 @@ export default function Timer() {
         "https://ai.tanish.me/predict",
         requestBody
       );
-      console.log(response.data);
+      console.log(response.data.break * 60);
       alert("Switch to break tab to find our suggested break time!");
       setCurrentTimerType("shortBreak");
       setTimer(parseInt(response.data.break) * 60);
