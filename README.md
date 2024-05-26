@@ -4,9 +4,15 @@ Welcome to our Pomodoro App! This productivity tool is designed to help you mana
 
 **Backend URL**: THE BACKEND IS LIVE.
 
-   ```bash
-   https://pomodoro-app-1.onrender.com
-   ```
+```bash
+https://api.tanish.me
+```
+
+**Frontend URL**: THE FRONTEND IS LIVE.
+
+```bash
+https://app.tanish.me
+```
 
 # Getting Started
 
@@ -22,7 +28,9 @@ Welcome to our Pomodoro App! This productivity tool is designed to help you mana
    ```
       docker-compose up --build
    ```
+
 # Without using Docker
+
 1. **Clone the Repository**: Begin by cloning this repository to your local machine.
 
    ```bash

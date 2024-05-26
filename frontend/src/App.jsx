@@ -1,13 +1,13 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import Layout from './components/Layout/Layout';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout/Layout";
 // import BoardPage from './pages/Board/Board';
-import Calendar from './pages/Calendar/Calendar';
-import Dashboard from './pages/Dashboard/Dashboard';
-import DataGrid from './pages/DataGrid/DataGrid';
+import Calendar from "./pages/Calendar/Calendar";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import DataGrid from "./pages/DataGrid/DataGrid";
 import { ForgotPassword, Login, SignUp } from "./components";
-import TimerPomodoro from './views/Pomodoro';
 import IndexPage from './pages/Index/IndexPage';
-
+import OTPVerification from "./components/OTPVerification";
+import TimerPomodoro from "./views/Pomodoro";
 
 const App = () => {
   return (
@@ -24,6 +24,7 @@ const App = () => {
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/forgot" element={<ForgotPassword/>}/>
         <Route path="/timer" element={<TimerPomodoro/>}/>
+          <Route path="/verify" element={<OTPVerification />} />
 
 
 
@@ -37,12 +38,11 @@ const App = () => {
         </Route>
 
       </Routes>
-
         </div>
       </div>
     </BrowserRouter>
   );
-}
+};
 
 function MainLayout() {
   return (

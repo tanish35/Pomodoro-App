@@ -4,31 +4,38 @@ import { Link } from "react-router-dom";
 import { styles } from "../style";
 import { SectionWrapper } from "./hoc";
 import { slideIn } from "../utils/motions";
-import {Button} from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const ForgotPassword = () => {
+  const navigate = useNavigate();
   const formRef = useRef();
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    const { target } = e;
-    const { name, value } = target;
-
-    setForm({
-      ...form,
-      [name]: value,
-    });
+    setEmail(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
+    try {
+      axios
+        .post("/api/user/forgotpassword", {
+          email: email,
+        })
+        .then((res) => {
+          console.log(res.data);
+          setLoading(false);
+          alert("Password reset link has been sent to your mail");
+          navigate("/verify");
+        });
+    } catch (error) {
+      console.error("Error occurred while sending password reset link:", error);
+      setLoading(false);
+    }
   };
 
   return (
@@ -51,43 +58,31 @@ const ForgotPassword = () => {
             <span className="text-white font-medium mb-4">Email</span>
             <input
               type="text"
-              name="name"
-              value={form.name}
+              value={email}
               onChange={handleChange}
               placeholder="Enter your registered mail"
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
-          <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">New Password</span>
-            <input
-              rows={7}
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              placeholder="Enter new password"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
-            />
-          </label>
 
           <Link
-          to='/signin'
-          className='flex items-center gap-2 text-cyan-300'
-          onClick={() => {
-            setActive("");
-            window.scrollTo(0, 0);
-          }}>
+            to="/signin"
+            className="flex items-center gap-2 text-cyan-300"
+            onClick={() => {
+              setActive("");
+              window.scrollTo(0, 0);
+            }}
+          >
             SignIn
           </Link>
 
-
           <Button
-            type='submit'
+            type="submit"
             variant="bordered"
-            className='bg-purple-950 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary'
+            className="bg-purple-950 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"
           >
             {loading ? "Please Wait..." : "Verify"}
-          </Button>   
+          </Button>
         </form>
       </motion.div>
     </div>

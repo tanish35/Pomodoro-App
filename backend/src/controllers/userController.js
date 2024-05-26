@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 import sendMail from "../mail/nodeMailing.js";
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, username, email, password } = req.body;
+  const { name, username, email, password, age } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 8);
   if (!name || !email || !password || !username) {
     return res.status(422).json({ error: "Please add all the fields" });
@@ -31,6 +31,7 @@ const registerUser = asyncHandler(async (req, res) => {
       name,
       email,
       username,
+      age,
       password: hashedPassword,
       expiresAt: new Date(Date.now() + 1000 * 60 * 5),
     },
@@ -63,6 +64,7 @@ const verifyUser = asyncHandler(async (req, res) => {
       email: user.email,
       username: user.username,
       password: user.password,
+      age: user.age,
     },
   });
   await prisma.TempUser.delete({

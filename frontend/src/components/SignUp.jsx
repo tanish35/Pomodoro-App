@@ -5,74 +5,49 @@ import { styles } from "../style";
 import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "./hoc";
 import { slideIn } from "../utils/motions";
-import {Button} from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
 import axios from "axios";
 
 const Signup = () => {
   const formRef = useRef();
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
   const [loading, setLoading] = useState(false);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-        const res = await axios.post(`/api/user/login`, {
-            withCredentials: true,
-            email: email,
-            password: password,
-        });
-        if (!res.data) {
-            setLoading(false);
-            alert("Server down. Please try again later.");
-        }
-        if (res.status === 200) {
-            console.log("Logged in");
-            setLoading(false);
-            window.location.href = "/dashboard";
-        }
-        else if (res.status === 422) {
-            setLoading(false);
-            alert("Enter all the feilds");
-        }
-        else if (res.status === 409) {
-            setLoading(false);
-            alert("User already exists. Please login.");
-        }
-        else if (res.status === 406) {
-            setLoading(false);
-            alert("Username already exists. Please try with different username.");
-        }
-    }
-    catch (err) {
-        console.log(err);
-        setLoading(false);
-        alert("Could not login. Please try again.")
-    }
-
+  const [form, setForm] = useState({
+    username: "",
+    name: "",
+    email: "",
+    age: "",
+    password: "",
+  });
 
   const handleChange = (e) => {
-    const { target } = e;
-    const { name, value } = target;
-
+    const { name, value } = e.target;
     setForm({
       ...form,
       [name]: value,
     });
   };
 
-  
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await axios
+        .post("/api/user/", form, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res.data);
+          setLoading(false);
+          alert("Account created successfully. Please verify email");
+          window.location.href = "/signin";
+        });
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+      alert("Could not login. Please try again.");
+    }
   };
 
   return (
@@ -92,71 +67,84 @@ const Signup = () => {
           className="mt-12 flex flex-col gap-8"
         >
           <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Email</span>
+            <span className="text-white font-medium mb-4">Username</span>
+            <input
+              type="text"
+              name="username"
+              value={form.username}
+              onChange={handleChange}
+              placeholder="Enter your Username"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+            />
+          </label>
+          <label className="flex flex-col">
+            <span className="text-white font-medium mb-4">Name</span>
             <input
               type="text"
               name="name"
-
-              value={email}
-              onChange={e => setEmail(e.target.value)}
+              value={form.name}
+              onChange={handleChange}
+              placeholder="Enter your Name"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+            />
+          </label>
+          <label className="flex flex-col">
+            <span className="text-white font-medium mb-4">Email</span>
+            <input
+              type="text"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
               placeholder="Enter your Email"
-
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+            />
+          </label>
+          <label className="flex flex-col">
+            <span className="text-white font-medium mb-4">Age</span>
+            <input
+              type="number"
+              name="age"
+              value={form.age}
+              onChange={handleChange}
+              placeholder="Enter your Age"
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
           <label className="flex flex-col">
             <span className="text-white font-medium mb-4">Password</span>
             <input
-              rows={7}
-
+              type="password"
               name="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              placeholder="put down your secret here"
-              className="bg-tertiary  py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
-
+              value={form.password}
+              onChange={handleChange}
+              placeholder="Enter your Password"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
 
           <Link
-          to='/signin'
-          className='flex items-center gap-2 text-white'
-          onClick={() => {
-            setActive("");
-            window.scrollTo(0, 0);
-          }}>
+            to="/signin"
+            className="flex items-center gap-2 text-white"
+            onClick={() => {
+              setActive("");
+              window.scrollTo(0, 0);
+            }}
+          >
             Already have an account?
             <div className="text-cyan-200">Login</div>
           </Link>
 
-
-
           <Button
-            type='submit'
+            type="submit"
             variant="bordered"
-
-            className= {loading ? "bg-purple-900 cursor-not-allowed py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary" : "bg-purple-600 hover:bg-purple-900 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"}
+            className={
+              loading
+                ? "bg-purple-900 cursor-not-allowed py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"
+                : "bg-purple-600 hover:bg-purple-900 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"
+            }
           >
-            
-            {/* <Link
-
-            className='bg-purple-950 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary'
-          >
-            
-            <Link
-
-            to='/signin'
-            className='flex items-center gap-2 text-white'
-            onClick={() => {
-                setActive("");
-                window.scrollTo(0, 0);
-
-            }}> */}
-                {loading ? "Loading..." : "SignUp"}
-            {/* </Link> */}
-
+            {loading ? "Loading..." : "SignUp"}
           </Button>
-          
         </form>
       </motion.div>
 
@@ -164,12 +152,12 @@ const Signup = () => {
         variants={slideIn("right", "tween", 0.2, 1)}
         className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
       >
-        <EarthCanvas />
+        <div className="h-full w-full">
+          <EarthCanvas />
+        </div>
       </motion.div>
     </div>
   );
 };
 
-
 export default SectionWrapper(Signup, "contact");
-

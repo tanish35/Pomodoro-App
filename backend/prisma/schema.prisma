@@ -21,6 +21,7 @@ model User {
   accessToken String?
   password    String?
   pic         String?   @default("https://i.ytimg.com/vi/Py_-3di1yx0/maxresdefault.jpg")
+  age         String
   Stats       Stats[]
   History     History[]
   createdAt   DateTime  @default(now())
@@ -56,6 +57,7 @@ model TempUser {
   username  String?  @unique
   name      String?
   password  String?
+  age       String?
   pic       String?  @default("https://i.ytimg.com/vi/Py_-3di1yx0/maxresdefault.jpg")
   OTP       String?
   expiresAt DateTime
