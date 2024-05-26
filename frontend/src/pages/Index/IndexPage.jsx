@@ -5,32 +5,32 @@ import './IndexPage.css'
 const IndexPage = () => {
   const {loading, userData} = useUser();
   
-  // if (loading) {
-  //   return (
-  //     <div class="preloader">
-  //       <div class="preloader__ring">
+  if (loading) {
+    return (
+      <div class="preloader">
+        <div class="preloader__ring">
 
-  //         <div class="preloader__sector"></div>
-  //         <div class="preloader__sector"></div>
-  //         <div class="preloader__sector"></div>
-  //         <div class="preloader__sector"></div>
-  //         <div class="preloader__sector"></div>
-  //         <div class="preloader__sector"></div>
-  //         <div class="preloader__sector"></div>
-  //         <div class="preloader__sector"></div>
-  //         <div class="preloader__sector"></div>
-  //         <div class="preloader__sector"></div>
-  //         <div class="preloader__sector"></div>
-  //         <div class="preloader__sector"></div>
-  //         <div class="preloader__sector"></div>
-  //         <div class="preloader__sector"></div>
-  //         <div class="preloader__sector"></div>
-  //       </div>
-  //     <div class="preloader__text">Loading...</div>
-  //     <div class="preloader__bar"></div>
-  //   </div>
-  //   )
-  // }
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+        </div>
+      <div class="preloader__text">Loading...</div>
+      <div class="preloader__bar"></div>
+    </div>
+    )
+  }
   if (userData.length === 0) {
     return <Navigate to='/signin' />
   }
