@@ -33,13 +33,16 @@ const DataGrid = () => {
 
   const transformedData = useMemo(() => {
     if (!userData.length) return []; // Return an empty array if there's no data
-    return userData.map((user) => ({
-      id: user.id,
-      username: user.username,
-      totalTimeStudied: user.stats[0]?.totalTimeStudied || 0,
-      maxTimeStudied: user.stats[0]?.maxTimeStudied || 0,
-      streak: user.stats[0]?.streak || 0,
-    }));
+    return userData.map((user) => {
+      const stats = user.stats && user.stats[0] ? user.stats[0] : {};
+      return {
+        id: user.id,
+        username: user.username,
+        totalTimeStudied: stats.totalTimeStudied || 0,
+        maxTimeStudied: stats.maxTimeStudied || 0,
+        streak: stats.streak || 0,
+      };
+    });
   }, [userData]);
 
   const columns = useMemo(
