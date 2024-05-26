@@ -117,13 +117,24 @@ export default function Timer() {
     const res = await axios.get("/api/user/me", {
       withCredentials: true,
     });
-    const breakTime = await axios.post("https://ai.tanish.me/predict", {
-      totalHours: "5",
+    const currentHour = new Date().getHours();
+    const requestBody = {
+      totalHours: Math.floor(timePassed / 3600),
       age: res.data.age,
-      period: toString(new Date().getHours()),
-    });
-    alert("Switch to break tab to find our suggested break time!");
-    setTimer(breakTime.data.break);
+      period: currentHour.toString(),
+    };
+
+    try {
+      const response = await axios.post(
+        "https://ai.tanish.me/predict",
+        requestBody
+      );
+      alert("Switch to break tab to find our suggested break time!");
+      setCurrentTimerType("shortBreak");
+      setTimer(parseInt(response.data.break) * 60);
+    } catch (error) {
+      console.error("Error:", error.response.data);
+    }
   };
 
   const handleShortBreak = () => {
