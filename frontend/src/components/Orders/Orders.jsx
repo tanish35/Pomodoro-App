@@ -71,7 +71,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useUser } from "../../hook/useUser";
-import HistoryCard from "./historyCard";
+import HistoryCard from "./HistoryCard.jsx";
 import css from "./Orders.module.css";
 
 const Orders = () => {
