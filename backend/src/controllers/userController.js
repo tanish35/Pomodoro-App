@@ -31,6 +31,7 @@ const registerUser = asyncHandler(async (req, res) => {
       name,
       email,
       username,
+      age,
       password: hashedPassword,
       expiresAt: new Date(Date.now() + 1000 * 60 * 5),
     },
@@ -63,6 +64,7 @@ const verifyUser = asyncHandler(async (req, res) => {
       email: user.email,
       username: user.username,
       password: user.password,
+      age: user.age,
     },
   });
   await prisma.TempUser.delete({
