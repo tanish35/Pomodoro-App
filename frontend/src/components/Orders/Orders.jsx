@@ -75,8 +75,8 @@ import HistoryCard from "./HistoryCard.jsx";
 import css from "./Orders.module.css";
 
 const Orders = () => {
-  const { history } = useUser();
-  const [loading, setLoading] = useState(true);
+  const { loading, history } = useUser();
+  // const [loading, setLoading] = useState(true);
 
   
 
