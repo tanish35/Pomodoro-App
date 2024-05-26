@@ -5,6 +5,17 @@ import axios from 'axios'
 import { useUser } from '../../hook/useUser';
 const StatisticsChart =  () => {
 
+    function getCurrentDateFormatted(date) {
+        // const date = new Date();
+      
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        const year = date.getFullYear();
+      
+        return `${day}/${month}/${year}`;
+      }
+      
+
     const {loading, history} = useUser();
 
     if (loading) {
@@ -16,8 +27,8 @@ const StatisticsChart =  () => {
 
     if (history.length > 0) {
         history.map((history) => {
-            x_axis.push(history.date)
-            y_axis.push(history.totalTimeStudied)
+            x_axis.push(getCurrentDateFormatted(history.date))
+            y_axis.push(history.timeStudied)
         })
     }
 

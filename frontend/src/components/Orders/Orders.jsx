@@ -78,6 +78,8 @@ const Orders = () => {
   const { history } = useUser();
   const [loading, setLoading] = useState(true);
 
+  
+
   const historyData = [
     {
       maxTimeStudied: 4,
@@ -113,7 +115,7 @@ const Orders = () => {
 
   return (
     <div className={`${css.container} theme-container`}>
-      {!loading ? (
+      {loading ? (
         <div>Loading...</div>
       ) : (
         <>
