@@ -165,83 +165,113 @@ export const boardData = {
 // * user table data
 export const userData = [
   {
-    name: {
-      firstName: 'John',
-      lastName: 'Doe',
-    },
-    address: '261 Erdman Ford',
-    city: 'East Daphne',
-    state: 'Kentucky',
+    id: "ddchducudhd",
+    username: "johndoe",
+    stats: [
+      {
+        totalTimeStudied: 100,
+        maxTimeStudied: 200,
+        streak: 10
+      }
+    ]
   },
   {
-    name: {
-      firstName: 'Jane',
-      lastName: 'Doe',
-    },
-    address: '769 Dominic Grove',
-    city: 'Columbus',
-    state: 'Ohio',
+    id: "a1b2c3d4e5f6",
+    username: "janedoe",
+    stats: [
+      {
+        totalTimeStudied: 150,
+        maxTimeStudied: 250,
+        streak: 12
+      }
+    ]
   },
   {
-    name: {
-      firstName: 'Joe',
-      lastName: 'Doe',
-    },
-    address: '566 Brakus Inlet',
-    city: 'South Linda',
-    state: 'West Virginia',
+    id: "g7h8i9j0k1l2",
+    username: "alicew",
+    stats: [
+      {
+        totalTimeStudied: 90,
+        maxTimeStudied: 180,
+        streak: 7
+      }
+    ]
   },
   {
-    name: {
-      firstName: 'Kevin',
-      lastName: 'Vandy',
-    },
-    address: '722 Emie Stream',
-    city: 'Lincoln',
-    state: 'Nebraska',
+    id: "m3n4o5p6q7r8",
+    username: "bobm",
+    stats: [
+      {
+        totalTimeStudied: 120,
+        maxTimeStudied: 220,
+        streak: 15
+      }
+    ]
   },
   {
-    name: {
-      firstName: 'Joshua',
-      lastName: 'Rolluffs',
-    },
-    address: '32188 Larkin Turnpike',
-    city: 'Charleston',
-    state: 'South Carolina',
-  }, {
-    name: {
-      firstName: 'Jane',
-      lastName: 'Doe',
-    },
-    address: '769 Dominic Grove',
-    city: 'Columbus',
-    state: 'Ohio',
+    id: "s9t0u1v2w3x4",
+    username: "charlieb",
+    stats: [
+      {
+        totalTimeStudied: 130,
+        maxTimeStudied: 210,
+        streak: 8
+      }
+    ]
   },
   {
-    name: {
-      firstName: 'Joe',
-      lastName: 'Doe',
-    },
-    address: '566 Brakus Inlet',
-    city: 'South Linda',
-    state: 'West Virginia',
+    id: "y5z6a7b8c9d0",
+    username: "davidp",
+    stats: [
+      {
+        totalTimeStudied: 110,
+        maxTimeStudied: 205,
+        streak: 11
+      }
+    ]
   },
   {
-    name: {
-      firstName: 'Kevin',
-      lastName: 'Vandy',
-    },
-    address: '722 Emie Stream',
-    city: 'Lincoln',
-    state: 'Nebraska',
+    id: "e1f2g3h4i5j6",
+    username: "eveq",
+    stats: [
+      {
+        totalTimeStudied: 140,
+        maxTimeStudied: 240,
+        streak: 9
+      }
+    ]
   },
   {
-    name: {
-      firstName: 'Joshua',
-      lastName: 'Rolluffs',
-    },
-    address: '32188 Larkin Turnpike',
-    city: 'Charleston',
-    state: 'South Carolina',
+    id: "k7l8m9n0o1p2",
+    username: "frankr",
+    stats: [
+      {
+        totalTimeStudied: 160,
+        maxTimeStudied: 260,
+        streak: 13
+      }
+    ]
   },
-]
+  {
+    id: "q3r4s5t6u7v8",
+    username: "graces",
+    stats: [
+      {
+        totalTimeStudied: 170,
+        maxTimeStudied: 270,
+        streak: 14
+      }
+    ]
+  },
+  {
+    id: "w9x0y1z2a3b4",
+    username: "henrym",
+    stats: [
+      {
+        totalTimeStudied: 180,
+        maxTimeStudied: 280,
+        streak: 16
+      }
+    ]
+  }
+];

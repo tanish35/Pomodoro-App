@@ -7,7 +7,7 @@ const Sidebar = () => {
     return (
         <div className={css.container}>
 
-            <img src="./logo.png" alt="logo" className={css.logo} />
+            {/* <img src="./logo.png" alt="logo" className={css.logo} /> */}
 
 
             <div className={css.menu}>
@@ -15,21 +15,7 @@ const Sidebar = () => {
                     <MdSpaceDashboard size={30} />
                 </NavLink>
                 
-                <NavLink
-                    to="calendar"
-                    className={css.item}
-                    title="Calendar"
-                >
-                    <AiFillCalendar size={30} />
-                </NavLink>
-
-                <NavLink
-                    to="board"
-                    className={css.item}
-                    title="Trello Board"
-                >
-                    <FaTasks size={30} />
-                </NavLink>
+                
 
                 <NavLink
                     to="users"

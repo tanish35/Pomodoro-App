@@ -1,6 +1,27 @@
 import ReactECharts from 'echarts-for-react'
 import * as echarts from 'echarts'
-const StatisticsChart = () => {
+import axios from 'axios'
+
+import { useUser } from '../../hook/useUser';
+const StatisticsChart =  () => {
+
+    const {loading, history} = useUser();
+
+    if (loading) {
+        return <div>Loading...</div>
+    } 
+    
+    const x_axis = [];
+    const y_axis = [];
+
+    if (history.length > 0) {
+        history.map((history) => {
+            x_axis.push(history.date)
+            y_axis.push(history.totalTimeStudied)
+        })
+    }
+
+    
 
     const option = {
         color: ['var(--orange)'],
@@ -31,7 +52,7 @@ const StatisticsChart = () => {
             {
                 type: "category",
                 boundaryGap: false,
-                data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+                data: x_axis,
             }
         ],
         yAxis: [
@@ -76,7 +97,7 @@ const StatisticsChart = () => {
                     focus: "series",
                 },
                 showSymbol: false,
-                data: [28000, 19000, 32000, 18000, 41000, 30000, 26000]
+                data: y_axis
             }
         ]
     }
