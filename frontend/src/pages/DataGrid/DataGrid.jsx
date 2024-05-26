@@ -7,7 +7,8 @@ import axios from "axios";
 
 const DataGrid = () => {
   const [userData, setUserData] = useState([]);
-  const [loading, setLoading] = useState(true); // State to indicate loading status
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); // State for handling errors
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,22 +18,21 @@ const DataGrid = () => {
           withCredentials: true,
         });
         setUserData(res.data.users);
-        setLoading(false); // Set loading to false after data is fetched
       } catch (error) {
         console.log(error);
-        setLoading(false); // Set loading to false if there's an error
+        setError(error); // Set error state
+        // Uncomment or adjust the navigation on error as needed
         // navigate('/dashboard');
+      } finally {
+        setLoading(false); // Ensure loading is set to false in both cases
       }
     };
 
     fetchData();
   }, [navigate]);
-  
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   const transformedData = useMemo(() => {
+    if (!userData.length) return []; // Return an empty array if there's no data
     return userData.map((user) => ({
       id: user.id,
       username: user.username,
@@ -74,9 +74,15 @@ const DataGrid = () => {
     []
   );
 
-  return loading ? (
-    <div>Loading...</div>
-  ) : (
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error loading data. Please try again later.</div>;
+  }
+
+  return (
     <div className="table-container">
       <ThemeProvider theme={theme}>
         <MaterialReactTable columns={columns} data={transformedData} />
