@@ -80,7 +80,7 @@ const Layout = () => {
                 <img src={userData.pic} alt="person image" />
                 <div className={css.details}>
                   <span>{userData.name}</span>
-                  <span>{userData.age}</span>
+                  <span>Age : {userData.age}</span>
                   <span>{userData.email}</span>
                 </div>
               </div>
