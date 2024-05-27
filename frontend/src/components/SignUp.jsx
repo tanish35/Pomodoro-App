@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { styles } from "../style";
-import { EarthCanvas } from "./canvas";
+import { EarthCanvas2 } from "./canvas";
 import { SectionWrapper } from "./hoc";
 import { slideIn } from "../utils/motions";
 import { Button } from "@nextui-org/react";
@@ -22,6 +22,7 @@ const Signup = () => {
   });
 
   const handleChange = (e) => {
+    const { target } = e;
     const { name, value } = e.target;
     setForm({
       ...form,
@@ -62,10 +63,9 @@ const Signup = () => {
     <div className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}>
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className="flex-[0.75] bg-black-100 p-8 rounded-2xl"
+        className="flex-[0.75] bg-black-100 p-8 rounded-2xl h-full"
       >
-        <p className={styles.sectionHeadText}>Create Your Account.</p>
-        <h3 className="text-2xl">SignUp</h3>
+        <p className="text-white font-bold text-[30px]">SignUp</p>
 
         <form
           ref={formRef}
@@ -83,7 +83,8 @@ const Signup = () => {
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
             />
           </label>
-          <label className="flex flex-col">
+          <div className="flex flex-row">
+          <label className="flex flex-col w-[380px]">
             <span className="text-white font-medium mb-4">Name</span>
             <input
               type="text"
@@ -94,6 +95,21 @@ const Signup = () => {
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
             />
           </label>
+          <div className="invisible">
+          &nbsp
+          </div>
+          <label className="flex flex-col w-[90px]">
+            <span className="text-white font-medium mb-4">Age</span>
+            <input
+              type="number"
+              name="age"
+              value={form.age}
+              onChange={handleChange}
+              placeholder="Age"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
+            />
+          </label>
+          </div>
           <label className="flex flex-col">
             <span className="text-white font-medium mb-4">Email</span>
             <input
@@ -105,17 +121,7 @@ const Signup = () => {
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
             />
           </label>
-          <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Age</span>
-            <input
-              type="number"
-              name="age"
-              value={form.age}
-              onChange={handleChange}
-              placeholder="Enter your Age"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
-            />
-          </label>
+          
           <label className="flex flex-col">
             <span className="text-white font-medium mb-4">Password</span>
             <input
@@ -152,11 +158,9 @@ const Signup = () => {
 
       <motion.div
         variants={slideIn("right", "tween", 0.2, 1)}
-        className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
+        className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px] w-[700px]"
       >
-        <div className="h-full w-full">
-          <EarthCanvas />
-        </div>
+        <EarthCanvas2 />
       </motion.div>
     </div>
   );

@@ -4,7 +4,7 @@ import { FaAppleAlt } from "react-icons/fa";
 import { Switch } from "@material-tailwind/react";
 import { Input } from "@material-tailwind/react";
 import { useTimerContext } from "./TimerContext";
-
+import Todo from "./Todo";
 export default function Setting({ onClose }) {
 
   const {
@@ -60,17 +60,20 @@ export default function Setting({ onClose }) {
           <div className="bg-slate-950 rounded-2xl flex flex-col justify-evenly h-[300px] mt-5">
             <div className="flex flex-col items-center">
               <p className="mb-1 text-2xl text-white">Duration</p>
-              <div className="w-auto">
+              <div className="w-[250px] h-[100px]">
                 <Input
                   color="blue"
-                  label="Temps en minutes"
                   type="number"
                   min={1}
+                  className="text-black text-3xl font-bold rounded-lg p-2 text-center"
                   value={initialTimeFocus / 60}
                   onChange={(e) =>
                     handleUpdatePomodoroTime(e.target.value * 60)
                   }
                 />
+                <div className="invisible">&nbsp</div>
+                <p className="mb-1 text-2xl text-white text-center">Task Name</p>
+                <Todo/>
               </div>
             </div>
           </div>

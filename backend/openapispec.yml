@@ -1,0 +1,201 @@
+swagger: '2.0'
+info:
+  title: Routes Documentation
+  version: '1.0'
+basePath: /api
+schemes:
+  - http
+paths:
+  /user/:
+    post:
+      summary: Register User
+      description: Registers a new user.
+      tags:
+        - User
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+      security: []
+    put:
+      summary: Update User Fields
+      description: Updates user fields.
+      tags:
+        - User
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+      security:
+        - checkAuth: []
+  /user/login:
+    post:
+      summary: Login User
+      description: Logs in a user.
+      tags:
+        - User
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+      security: []
+  /user/signout:
+    get:
+      summary: Sign Out
+      description: Signs out a user.
+      tags:
+        - User
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+      security: []
+  /user/updatepassword:
+    put:
+      summary: Update User Password
+      description: Updates user password.
+      tags:
+        - User
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+      security:
+        - checkAuth: []
+  /user/updatepicture:
+    put:
+      summary: Update User Picture
+      description: Updates user profile picture.
+      tags:
+        - User
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+      security:
+        - checkAuth: []
+  /user/verify/{token}:
+    get:
+      summary: Verify User
+      description: Verifies a user account.
+      tags:
+        - User
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+      security: []
+  /user/forgotpassword:
+    post:
+      summary: Forgot Password
+      description: Initiates the password reset process.
+      tags:
+        - User
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+      security: []
+  /user/resetpassword:
+    post:
+      summary: Reset Password
+      description: Resets user password.
+      tags:
+        - User
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+      security: []
+  /auth/google:
+    get:
+      summary: Sign in with Google
+      description: Initiates sign-in process with Google.
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+      security: []
+  /stats/:
+    post:
+      summary: Save Stats
+      description: Saves user statistics.
+      tags:
+        - Stats
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+      security:
+        - checkAuth: []
+  /stats/{id}:
+    get:
+      summary: Fetch Stats by ID
+      description: Fetches user statistics by ID.
+      tags:
+        - Stats
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+      security:
+        - checkAuth: []
+  /stats/history/{id}:
+    get:
+      summary: Fetch History by ID
+      description: Fetches user history by ID.
+      tags:
+        - Stats
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+      security: []
+  /stats/bulkdata:
+    get:
+      summary: Fetch Bulk Data
+      description: Fetches bulk data for generating graphs.
+      tags:
+        - Stats
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+      security:
+        - checkAuth: []
+definitions: {}
+securityDefinitions:
+  checkAuth:
+    type: apiKey
+    in: header
+    name: Authorization

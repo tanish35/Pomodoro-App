@@ -17,10 +17,12 @@ const EditPage = () => {
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
   const [pic, setPic] = useState("");
+  const [age, setAge] = useState("");
 
   // const handleEmailChange = (e) => setEmail(e.target.value);
   const handleNameChange = (e) => setName(e.target.value);
   const handleUsernameChange = (e) => setUsername(e.target.value);
+
   const postDetails = (pics) => {
     setLoading(true);
     if (pics === undefined) {
@@ -53,6 +55,8 @@ const EditPage = () => {
       return;
     }
   };
+  const handleAgeChange = (e) => setAge(e.target.value);
+  // const handleImageChange = (e) => setImage(e.target.files[0]);
 
   // function addPhotoByLink() {
 
@@ -64,7 +68,7 @@ const EditPage = () => {
     try {
       const res = await axios.put(
         "/api/user/update",
-        { username, name, pic },
+        { username, name, age, pic },
         {
           withCredentials: true,
         }
@@ -109,6 +113,17 @@ const EditPage = () => {
             />
           </label>
 
+          <label className="flex flex-col">
+            <span className="text-white font-medium mb-2">Update Age</span>
+            <span className="text-white font-medium mb-2">Age</span>
+            <input
+              type="text"
+              value={age}
+              onChange={handleAgeChange}
+              placeholder="Enter your age"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
+            />
+          </label>
           <label className="flex flex-col">
             <span className="text-white font-medium mb-2">
               Upload Profile Pic
