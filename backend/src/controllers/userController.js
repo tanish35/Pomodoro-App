@@ -123,17 +123,17 @@ const signOut = asyncHandler(async (req, res) => {
 
 const updateFields = asyncHandler(async (req, res) => {
   try {
-    const { username, name, age, pic } = req.body;
-    if (name == undefined) {
+    let { username, name, age, pic } = req.body;
+    if (!name) {
       name = req.user.name;
     }
-    if (username == undefined) {
+    if (!username) {
       username = req.user.username;
     }
-    if (age == undefined) {
+    if (!age) {
       age = req.user.age;
     }
-    if (pic == undefined) {
+    if (!pic) {
       pic = req.user.pic;
     }
     if (username != undefined) {

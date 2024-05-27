@@ -33,7 +33,7 @@ const EditPage = () => {
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
       data.append("file", pics);
-      data.append("upload_preset", "pomodoro-app");
+      data.append("upload_preset", "chat-app");
       data.append("cloud_name", "piyushproj");
       fetch("https://api.cloudinary.com/v1_1/piyushproj/image/upload", {
         method: "post",
@@ -114,7 +114,6 @@ const EditPage = () => {
           </label>
 
           <label className="flex flex-col">
-            <span className="text-white font-medium mb-2">Update Age</span>
             <span className="text-white font-medium mb-2">Age</span>
             <input
               type="text"
