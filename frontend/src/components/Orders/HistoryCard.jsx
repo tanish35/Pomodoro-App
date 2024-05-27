@@ -15,8 +15,8 @@ const HistoryCard = (historyData) => {
     <div className="bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 text-white p-5 rounded-lg shadow-md">
       <div className="space-y-2">
         <div className="flex justify-between">
-          <span className="font-medium">Max Time Studied</span>
-          <span>Hours: {historyData.timeStudied}</span>
+          <span className="font-medium">Time Studied</span>
+          <span>Mins: {historyData.timeStudied}</span>
         </div>
         <div className="flex justify-between">
           <span className="font-medium">Date</span>

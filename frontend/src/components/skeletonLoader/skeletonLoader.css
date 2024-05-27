@@ -1,0 +1,16 @@
+.skeleton-loader {
+    background: linear-gradient(90deg, #e5e7eb, #f3f4f6, #e5e7eb);
+    background-size: 200% 100%;
+    animation: gradient-push 1.5s ease-in-out infinite;
+    border-radius: 0.25rem;
+  }
+  
+  @keyframes gradient-push {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+  
