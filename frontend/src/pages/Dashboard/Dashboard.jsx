@@ -9,6 +9,10 @@ import { Navigate } from "react-router-dom";
 const Dashboard = () => {
   const { loading, userData, stats } = useUser();
 
+  if (!loading && userData.length === 0) {
+    return <Navigate to="/signin" />;
+  }
+
   return (
     <div className={css.container}>
       {/* left side */}

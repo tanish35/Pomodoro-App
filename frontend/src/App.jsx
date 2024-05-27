@@ -8,6 +8,9 @@ import { ForgotPassword, Login, SignUp } from "./components";
 import IndexPage from './pages/Index/IndexPage';
 import OTPVerification from "./components/OTPVerification";
 import TimerPomodoro from "./views/Pomodoro";
+import EditPage from "./components/EditPage";
+// import EditProfilePic from "./components/EditProfilePic/EditProfilePic";
+
 
 const App = () => {
   return (
@@ -24,7 +27,8 @@ const App = () => {
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/forgot" element={<ForgotPassword/>}/>
         <Route path="/timer" element={<TimerPomodoro/>}/>
-          <Route path="/verify" element={<OTPVerification />} />
+        <Route path="/edit" element={<EditPage />} />
+        <Route path="/verify" element={<OTPVerification />} />
 
 
 

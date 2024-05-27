@@ -74,7 +74,7 @@ const Signup = () => {
               value={form.username}
               onChange={handleChange}
               placeholder="Enter your Username"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
             />
           </label>
           <label className="flex flex-col">
@@ -85,7 +85,7 @@ const Signup = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="Enter your Name"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
             />
           </label>
           <label className="flex flex-col">
@@ -96,7 +96,7 @@ const Signup = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="Enter your Email"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
             />
           </label>
           <label className="flex flex-col">
@@ -107,7 +107,7 @@ const Signup = () => {
               value={form.age}
               onChange={handleChange}
               placeholder="Enter your Age"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
             />
           </label>
           <label className="flex flex-col">
@@ -118,7 +118,7 @@ const Signup = () => {
               value={form.password}
               onChange={handleChange}
               placeholder="Enter your Password"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
             />
           </label>
 
