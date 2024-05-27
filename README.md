@@ -16,7 +16,7 @@ https://app.tanish.me
 
 # Getting Started
 
-# Using Docker
+**Using Docker**
 
 1. **Clone the Repository**: Begin by cloning this repository to your local machine.
 
@@ -26,10 +26,10 @@ https://app.tanish.me
 
 2. **Run the dockerfile:**
    ```
-      docker-compose up --build
+   docker-compose up --build
    ```
 
-# Without using Docker
+**Without using Docker**
 
 1. **Clone the Repository**: Begin by cloning this repository to your local machine.
 
@@ -68,7 +68,11 @@ https://app.tanish.me
 
 5. **Access the App**: Once the server is up and running, you can access the Pomodoro App by opening your browser and navigating to `http://localhost:3000`.
 
-**Tech Stack**
+# Explore our Swagger Page
+
+Explore our API routes conveniently on our Swagger page available at https://api.tanish.me/api-docs/. This interactive documentation provides a comprehensive overview of our API endpoints, allowing you to easily understand and test the functionality of each route. Whether you're integrating our APIs into your application or simply exploring the capabilities of our platform, our Swagger page offers a user-friendly experience to streamline your development process.
+
+# Tech Stack
 
 - **Frontend**: Built with React.js.
 - **Backend**: Utilizes Node.js and Express.js.
@@ -76,14 +80,14 @@ https://app.tanish.me
 - **Authentication**: JWT (JSON Web Tokens) for secure user authentication.
 - **Authentication**: OAuth 2.0 is being used with Google for user-friendly Sign-In.
 
-**Usage**
+# Usage
 
 - **Create Tasks**: Add tasks to your to-do list and assign them estimated Pomodoro intervals.
 - **Start Timer**: Initiate the Pomodoro timer to focus on a task for a set duration.
 - **Track Progress**: Monitor your productivity with the session and task history.
 - **Customizable Settings**: Adjust timer durations and intervals to suit your preferences.
 
-**Contributing**
+# Contributing
 
 Contributions are welcome! Feel free to submit bug reports, feature requests, or pull requests to help improve the app.
 
