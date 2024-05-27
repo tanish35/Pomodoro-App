@@ -28,6 +28,7 @@
     "passport-google-oauth20": "^2.0.0",
     "prisma": "^5.14.0",
     "react-circular-progressbar": "^2.1.0",
+    "swagger-ui-express": "^5.0.0",
     "use-sound": "^4.0.1"
   },
   "directories": {

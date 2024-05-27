@@ -8,6 +8,8 @@ import googleRoutes from "./routes/googleRoutes.js";
 import deleteTemp from "./deleteTemp/delete.js";
 import passport from "passport";
 import session from "express-session";
+import swaggerUi from "swagger-ui-express";
+import { openapispec } from "../openapispec.js";
 const app = express();
 app.use(express.json());
 
@@ -36,6 +38,8 @@ app.use("/deletetemp", deleteTemp);
 app.get("/", (req, res) => {
   res.send("Backend is Live ");
 });
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapispec));
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
 });
