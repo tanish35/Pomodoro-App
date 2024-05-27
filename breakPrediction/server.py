@@ -10,7 +10,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # This allows requests from all origins
     allow_credentials=True,
-    allow_methods=["GET", "POST"],
+    allow_methods=["GET", "POST", "HEAD"],  # Add "HEAD" to allowed methods
     allow_headers=["*"],
 )
 
@@ -20,18 +20,22 @@ class PredictRequest(BaseModel):
     age: int
 
 @app.get("/")
-def read_root():
+async def read_root():
     return {"message": "Server is running"}
+
+@app.head("/")  # Define a HEAD method for the root endpoint
+async def head_root():
+    return {}
 
 @app.post("/predict")
 def predict_endpoint(request: PredictRequest):
     try:
-        if(request.period>=18 or request.period<6):
-            period="Night"
+        if(request.period >= 18 or request.period < 6):
+            period = "Night"
         else:
-            period="Day"
+            period = "Day"
 
         prediction1 = prediction.predict_breaks(period, request.totalHours, request.age)
-        return {"break": int(prediction1*request.totalHours),"period":period}
+        return {"break": int(prediction1 * request.totalHours), "period": period}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
