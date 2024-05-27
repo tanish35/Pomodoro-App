@@ -143,7 +143,7 @@ const updateFields = asyncHandler(async (req, res) => {
         },
       });
       if (usernameExists && usernameExists.id !== req.user.id) {
-        return res.json({ error: "Username already exists. Choose a new one" });
+        return res.status(406).json({ error: "Username already exists" });
       }
     }
     const user = await prisma.user.update({
