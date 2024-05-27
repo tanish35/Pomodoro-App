@@ -27,7 +27,7 @@ router.get(
       useHttpOnly: true,
       sameSite: "none",
     });
-    res.redirect("https://app.tanish.me/dashboard");
+    res.redirect("https://app.tanish.me/profile/dashboard");
   }
 );
 
