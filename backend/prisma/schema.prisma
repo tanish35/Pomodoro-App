@@ -57,7 +57,7 @@ model TempUser {
   username  String?  @unique
   name      String?
   password  String?
-  age       String?
+  age       String?  @default("18")
   pic       String?  @default("https://i.ytimg.com/vi/Py_-3di1yx0/maxresdefault.jpg")
   OTP       String?
   expiresAt DateTime
