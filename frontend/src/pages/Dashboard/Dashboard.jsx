@@ -12,6 +12,17 @@ const Dashboard = () => {
   if (!loading && userData.length === 0) {
     return <Navigate to="/signin" />;
   }
+  function loader () {
+    return (
+      <div
+                    className="bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded h-4 w-16"
+                    style={{
+                      animation: "shimmer 1.5s infinite, pulse 1.5s infinite",
+                      backgroundSize: "200% 100%",
+                    }}
+                  ></div>
+    )
+  }
 
   return (
     <div className={css.container}>
@@ -45,11 +56,12 @@ const Dashboard = () => {
                       backgroundSize: "200% 100%",
                     }}
                   ></div>
+                  
                 ) : (
                   <div>
                     {card.title === "Total Time Studied" && (
                       <div className={css.cardAmount}>
-                        <span>Hours</span>
+                        <span>Minutes</span>
                         {stats && stats.totalTimeStudied !== undefined ? (
                           <span>{groupNumber(stats.totalTimeStudied)}</span>
                         ) : (
@@ -59,7 +71,7 @@ const Dashboard = () => {
                     )}
                     {card.title === "Max Time Studied" && (
                       <div className={css.cardAmount}>
-                        <span>Hours</span>
+                        <span>Minutes</span>
                         {stats && stats.maxTimeStudied !== undefined ? (
                           <span>{groupNumber(stats.maxTimeStudied)}</span>
                         ) : (

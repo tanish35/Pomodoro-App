@@ -31,6 +31,14 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate age
+    const age = parseInt(form.age, 10);
+    if (isNaN(age) || age <= 0) {
+      alert("Age can't be negative or zero.");
+      return;
+    }
+
     setLoading(true);
     try {
       await axios
@@ -46,14 +54,12 @@ const Signup = () => {
     } catch (err) {
       console.log(err);
       setLoading(false);
-      alert("Could not login. Please try again.");
+      alert("Could not sign up. Please try again.");
     }
   };
 
   return (
-    <div
-      className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
-    >
+    <div className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}>
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
         className="flex-[0.75] bg-black-100 p-8 rounded-2xl"
@@ -125,10 +131,6 @@ const Signup = () => {
           <Link
             to="/signin"
             className="flex items-center gap-2 text-white"
-            onClick={() => {
-              setActive("");
-              window.scrollTo(0, 0);
-            }}
           >
             Already have an account?
             <div className="text-cyan-200">Login</div>
