@@ -21,8 +21,6 @@ const DataGrid = () => {
       } catch (error) {
         console.log(error);
         setError(error); // Set error state
-        // Uncomment or adjust the navigation on error as needed
-        // navigate('/dashboard');
       } finally {
         setLoading(false); // Ensure loading is set to false in both cases
       }
@@ -33,14 +31,16 @@ const DataGrid = () => {
 
   const transformedData = useMemo(() => {
     if (!userData.length) return []; // Return an empty array if there's no data
+
     return userData.map((user) => {
-      const stats = user.stats && user.stats[0] ? user.stats[0] : {};
+      const Stats = user.Stats && user.Stats[0] ? user.Stats[0] : {};
+
       return {
         id: user.id,
         username: user.username,
-        totalTimeStudied: stats.totalTimeStudied || 0,
-        maxTimeStudied: stats.maxTimeStudied || 0,
-        streak: stats.streak || 0,
+        totalTimeStudied: Stats.totalTimeStudied || 0,
+        maxTimeStudied: Stats.maxTimeStudied || 0,
+        streak: Stats.streak || 0,
       };
     });
   }, [userData]);

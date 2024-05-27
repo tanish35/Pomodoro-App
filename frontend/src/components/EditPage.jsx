@@ -30,23 +30,19 @@ const EditPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.put("/api/user/update", { username, name });
+      const res = await axios.put(
+        "/api/user/update",
+        { username, name },
+        {
+          withCredentials: true,
+        }
+      );
       console.log(res.data);
-      if (res.status !== 422) {
-        alert("Enter all the feilds");
-        return;
-      }
-      if (res.status !== 200) {
-        alert("Failed to update user");
-        return;
-      }
-      if (res.status === 200) {
-        alert("User updated successfully");
-        navigate("/profile/dashboard");
-      }
+      alert("Profile updated successfully");
+      navigate("/profile/dashboard");
       setLoading(false);
     } catch (error) {
-      console.error("Error occurred while updating password: ", error);
+      alert("Please fill fields");
       setLoading(false);
     }
   };
@@ -92,8 +88,6 @@ const EditPage = () => {
             />
           </label> */}
 
-
-        
           <Button
             type="submit"
             variant="bordered"
@@ -101,7 +95,8 @@ const EditPage = () => {
               loading
                 ? "bg-purple-900 cursor-not-allowed py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"
                 : "bg-purple-600 hover:bg-purple-900 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"
-            }          >
+            }
+          >
             {loading ? "Updating..." : "Update"}
           </Button>
         </form>
