@@ -4,7 +4,7 @@ import { FaAppleAlt } from "react-icons/fa";
 import { Switch } from "@material-tailwind/react";
 import { Input } from "@material-tailwind/react";
 import { useTimerContext } from "./TimerContext";
-
+import Todo from "./Todo";
 export default function Setting({ onClose }) {
 
   const {
@@ -71,6 +71,9 @@ export default function Setting({ onClose }) {
                     handleUpdatePomodoroTime(e.target.value * 60)
                   }
                 />
+                <div className="invisible">&nbsp</div>
+                <p className="mb-1 text-2xl text-white text-center">Task Name</p>
+                <Todo/>
               </div>
             </div>
           </div>
