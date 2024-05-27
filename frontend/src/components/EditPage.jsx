@@ -16,11 +16,43 @@ const EditPage = () => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
+  const [pic, setPic] = useState("");
 
   // const handleEmailChange = (e) => setEmail(e.target.value);
   const handleNameChange = (e) => setName(e.target.value);
   const handleUsernameChange = (e) => setUsername(e.target.value);
-  // const handleImageChange = (e) => setImage(e.target.files[0]);
+  const postDetails = (pics) => {
+    setLoading(true);
+    if (pics === undefined) {
+      alert("Please Select an Image!");
+      setLoading(false);
+      return;
+    }
+    if (pics.type === "image/jpeg" || pics.type === "image/png") {
+      const data = new FormData();
+      data.append("file", pics);
+      data.append("upload_preset", "pomodoro-app");
+      data.append("cloud_name", "piyushproj");
+      fetch("https://api.cloudinary.com/v1_1/piyushproj/image/upload", {
+        method: "post",
+        body: data,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setPic(data.url.toString());
+          setLoading(false);
+          console.log(data.url.toString());
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        });
+    } else {
+      alert("Please Select an Image!");
+      setLoading(false);
+      return;
+    }
+  };
 
   // function addPhotoByLink() {
 
@@ -32,7 +64,7 @@ const EditPage = () => {
     try {
       const res = await axios.put(
         "/api/user/update",
-        { username, name },
+        { username, name, pic },
         {
           withCredentials: true,
         }
@@ -77,16 +109,18 @@ const EditPage = () => {
             />
           </label>
 
-          {/* <label className="flex flex-col">
-            <span className="text-white font-medium mb-2">Upload Profile Pic</span>
+          <label className="flex flex-col">
+            <span className="text-white font-medium mb-2">
+              Upload Profile Pic
+            </span>
             <input
               type="file"
-              ref={inputRef}
-              onChange={handleImageChange}
-              placeholder="Enter your username"
+              onChange={(e) => postDetails(e.target.files[0])}
+              accepts="image/*"
+              placeholder="Upload your pic"
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
             />
-          </label> */}
+          </label>
 
           <Button
             type="submit"

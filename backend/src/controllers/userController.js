@@ -123,7 +123,7 @@ const signOut = asyncHandler(async (req, res) => {
 
 const updateFields = asyncHandler(async (req, res) => {
   try {
-    const { username, name, age } = req.body;
+    const { username, name, age, pic } = req.body;
     if (name == undefined) {
       name = req.user.name;
     }
@@ -132,6 +132,9 @@ const updateFields = asyncHandler(async (req, res) => {
     }
     if (age == undefined) {
       age = req.user.age;
+    }
+    if (pic == undefined) {
+      pic = req.user.pic;
     }
     if (username != undefined) {
       const usernameExists = await prisma.User.findUnique({
@@ -151,6 +154,7 @@ const updateFields = asyncHandler(async (req, res) => {
         name,
         username,
         age,
+        pic,
       },
     });
     res.json({
@@ -158,6 +162,7 @@ const updateFields = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       age: user.age,
+      pic: user.pic,
     });
   } catch (e) {
     res.status(500).json({ error: "Failed to update user" });
