@@ -61,7 +61,7 @@ const ForgotPassword = () => {
               value={email}
               onChange={handleChange}
               placeholder="Enter your registered mail"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
             />
           </label>
 
@@ -79,8 +79,11 @@ const ForgotPassword = () => {
           <Button
             type="submit"
             variant="bordered"
-            className="bg-purple-950 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"
-          >
+            className={
+              loading
+                ? "bg-purple-900 cursor-not-allowed py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"
+                : "bg-purple-600 hover:bg-purple-900 py-3 px-8 rounded-xl w-fit text-white font-bold shadow-md shadow-primary"
+            }            >
             {loading ? "Please Wait..." : "Verify"}
           </Button>
         </form>

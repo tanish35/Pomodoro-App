@@ -88,7 +88,7 @@ const Login = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="Type your email here"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
             />
           </label>
           <label className="flex flex-col">
@@ -99,7 +99,7 @@ const Login = () => {
               value={form.password}
               onChange={handleChange}
               placeholder="Type your password here"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
             />
           </label>
 
