@@ -119,7 +119,7 @@ export default function Timer() {
     });
     const currentHour = new Date().getHours();
     const requestBody = {
-      totalHours: Math.floor(timePassed / 3600),
+      totalHours: Math.floor(timePassed / 60),
       age: res.data.age,
       period: currentHour.toString(),
     };
@@ -130,7 +130,7 @@ export default function Timer() {
       );
       alert("Switch to break tab to find our suggested break time!");
       setCurrentTimerType("shortBreak");
-      setTimer(parseInt(response.data.break) * 60);
+      setTimer(parseInt(response.data.break));
     } catch (error) {
       console.error("Error:", error.response.data);
     }
