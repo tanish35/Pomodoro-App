@@ -85,9 +85,9 @@ const Pomodoro = () => {
     setDataPosting(true);
     try {
         const res = await axios.post("/api/stats", {minutes, task}, {withCredentials: true});
-        const fetchBreak = await axios.get("https://ai.tanish.me/predict",{period, minutes ,age}, {withCredentials: true});
+        // const fetchBreak = await axios.get("https://ai.tanish.me/predict",{period, minutes ,age}, {withCredentials: true});
         alert("Session ended! Its time for your break! You also can reload the page to start a new session.")
-        setBreakLength(fetchBreak.data.break);
+        // setBreakLength(fetchBreak.data.break);
         setDataPosting(false);
         setCurrentPhase('break');
         setBreakStatus(true);
@@ -211,7 +211,7 @@ const Pomodoro = () => {
             secondTitle="Seconds"
             theme="dark"
             size="medium"
-            onTimeUp={() => {const audio = new Audio (breakSound); audio.play();}}
+            // onTimeUp={() => {const audio = new Audio (breakSound); audio.play();}}
             endAtZero
             endAt={getFutureDate(0)} // End time in Unix timestamp
             
@@ -231,7 +231,7 @@ const Pomodoro = () => {
             secondTitle="Seconds"
             theme="dark"
             size="medium"
-            onTimeUp={() => {const audio = new Audio (breakSound); audio.play();}}
+            // onTimeUp={() => {const audio = new Audio (breakSound); audio.play();}}
             endAtZero
             endAt={getFutureDate(timeLeft)} // End time in Unix timestamp
             
