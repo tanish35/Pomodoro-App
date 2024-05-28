@@ -80,12 +80,12 @@ const Pomodoro = () => {
     const stopMinutes = new Date().getTime() / 60000;
     const minutes = (stopMinutes - startMinutes);
     const hoursStudies = Math.floor(minutes / 60);
-    const currentHours = new Date().getHours();
+    const period = new Date().getHours();
     const age = userData.age;
     setDataPosting(true);
     try {
         const res = await axios.post("/api/stats", {minutes, task}, {withCredentials: true});
-        const fetchBreak = await axios.get("https://ai.tanish.me/predict",{hoursStudies, currentHours, age}, {withCredentials: true});
+        const fetchBreak = await axios.get("https://ai.tanish.me/predict",{period, minutes ,age}, {withCredentials: true});
         alert("Session ended! Its time for your break! You also can reload the page to start a new session.")
         setBreakLength(fetchBreak.data.break);
         setDataPosting(false);
@@ -166,7 +166,7 @@ const Pomodoro = () => {
         <div className="flex justify-center mb-4">
         {!breakStatus ? 
           <div className="text-center">
-            <p className="text-black pb-2">Session Length</p>
+            <p className="text-black pb-2">Session Length (in Mins)</p>
             <div className="flex items-center justify-center">
               <button className="bg-black hover:bg-white hover:text-black text-lg text-white px-4 py-2 rounded" onClick={handleSessionDecrement}>-</button>
               <div className="mx-2 text-lg px-11 py-3 text-black">
@@ -185,7 +185,7 @@ const Pomodoro = () => {
         
           <div className="text-center">
            {/* {alert (`Your suggested break length is ${breakLength} mins. You also change the break length.`)} */}
-            <p className="text-black pb-2">Break Length</p>
+            <p className="text-black pb-2">Break Length (in Mins)</p>
             <div className="flex items-center justify-center">
               <button className="bg-black hover:bg-white hover:text-black text-lg text-white px-4 py-2 rounded" onClick={handleBreakDecrement}>-</button>
               <div className="mx-2 text-lg px-11 py-3 text-black">
