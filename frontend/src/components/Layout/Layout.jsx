@@ -5,6 +5,7 @@ import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 import { useUser } from "../../hook/useUser";
 import SkeletonLoader from "../skeletonLoader/skeletonLoader";
+import axios from "axios";
 
 const Layout = () => {
   const navigate = useNavigate();
@@ -16,6 +17,15 @@ const Layout = () => {
   function nav() {
     navigate("/edit");
   }
+
+  const handleSignOut = async () => {
+    try {
+      await axios.get("/api/user/signout", { withCredentials: true });
+      navigate("/signin");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className={css.container}>
@@ -77,6 +87,10 @@ const Layout = () => {
                   <span>Age : {userData.age}</span>
                   <span>{userData.email}</span>
                   <span>Username : {userData.username}</span>
+                  <button className={css.but1} onClick={handleSignOut}>
+                    {" "}
+                    SIGN OUT{" "}
+                  </button>
                 </div>
               </div>
             )}
