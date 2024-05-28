@@ -9,6 +9,8 @@ import IndexPage from './pages/Index/IndexPage';
 import OTPVerification from "./components/OTPVerification";
 import TimerPomodoro from "./views/Pomodoro";
 import EditPage from "./components/EditPage";
+import CountdownComponent from "./pages/PromodoroTimer/PromodoroTimer";
+import Pomodoro from "./pages/PromodoroTimer/PromodoroTimer";
 // import EditProfilePic from "./components/EditProfilePic/EditProfilePic";
 
 
@@ -32,9 +34,12 @@ const App = () => {
 
 
 
+          <Route path="/timer" element={<TimerPomodoro/>}/>
+          <Route path="/timer2" element={<Pomodoro />}/>
         <Route path="/profile" element={<MainLayout/>}>
 
           <Route path="dashboard" element={<Dashboard/>}/>
+
           {/* <Route path="calendar" element={<Calendar/>}/> */}
           {/* <Route path="board" element={<BoardPage/>}/> */}
           <Route path="users" element={<DataGrid/>}/>
