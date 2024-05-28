@@ -28,7 +28,7 @@ const App = () => {
         <Route path="/signin" element={<Login/>}/>
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/forgot" element={<ForgotPassword/>}/>
-        <Route path="/timer" element={<TimerPomodoro/>}/>
+{/*         <Route path="/timer" element={<TimerPomodoro/>}/> */}
         <Route path="/edit" element={<EditPage />} />
         <Route path="/verify" element={<OTPVerification />} />
 
