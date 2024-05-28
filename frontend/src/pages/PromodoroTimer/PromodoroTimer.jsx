@@ -76,10 +76,14 @@ const Pomodoro = () => {
 
   const handleStop = async () => {
     console.log(task);
-    setIsRunning(false);
     const stopMinutes = new Date().getTime() / 60000;
     const minutes = stopMinutes - startMinutes;
-    const totalHours = Math.floor(minutes / 60);
+    const totalHours = minutes;
+    if (totalHours < 3) {
+      alert("You have not  for atleast 4 minutes. Please continue studying.");
+      return;
+    }
+    setIsRunning(false);
     const period = new Date().getHours();
     const age = userData.age;
     setDataPosting(true);
@@ -89,7 +93,7 @@ const Pomodoro = () => {
         { minutes, task },
         { withCredentials: true }
       );
-      const fetchBreak = await axios.get("https://ai.tanish.me/predict", {
+      const fetchBreak = await axios.post("https://ai.tanish.me/predict", {
         period,
         totalHours,
         age,

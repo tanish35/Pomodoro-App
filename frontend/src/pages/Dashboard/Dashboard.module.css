@@ -4,7 +4,7 @@
   padding: 0rem 4rem;
   display: flex;
   gap: 2rem;
-  height: calc(100vh - 12rem);
+  height: calc(100vh - 15rem);
   /* Adjust the height based on your header/footer size */
   overflow-y: auto;
   /* Enable vertical scrolling */

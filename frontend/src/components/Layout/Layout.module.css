@@ -65,6 +65,7 @@
     gap: 1rem;
     align-items: center;
     justify-content: center;
+    height: 20vh;
 }
 
 .profile>img {
