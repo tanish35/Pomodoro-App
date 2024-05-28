@@ -1,177 +1,355 @@
-/* Variables */
-:root {
-    --ringRadius: 7rem;
-    --ringSectors: 15;
-    --animDuration: 8s;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  /* Sets the background color to black */
+}
+
+.wheel-and-hamster {
+  --dur: 1s;
+  position: relative;
+  width: 300px;
+  /* Adjusted size */
+  height: 300px;
+  /* Adjusted size */
+  font-size: 14px;
+}
+
+.wheel,
+.hamster,
+.hamster div,
+.spoke {
+  position: absolute;
+}
+
+.wheel,
+.spoke {
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.wheel {
+  background: radial-gradient(100% 100% at center, hsla(0, 0%, 60%, 0) 47.8%, hsl(0, 0%, 60%) 48%);
+  z-index: 2;
+}
+
+.hamster {
+  animation: hamster var(--dur) ease-in-out infinite;
+  top: 50%;
+  left: calc(50% - 3.5em);
+  width: 7em;
+  height: 3.75em;
+  transform: rotate(4deg) translate(-0.8em, 1.85em);
+  transform-origin: 50% 0;
+  z-index: 1;
+}
+
+.hamster__head {
+  animation: hamsterHead var(--dur) ease-in-out infinite;
+  background: hsl(30, 90%, 55%);
+  border-radius: 70% 30% 0 100% / 40% 25% 25% 60%;
+  box-shadow: 0 -0.25em 0 hsl(30, 90%, 80%) inset,
+    0.75em -1.55em 0 hsl(30, 90%, 90%) inset;
+  top: 0;
+  left: -2em;
+  width: 2.75em;
+  height: 2.5em;
+  transform-origin: 100% 50%;
+}
+
+.hamster__ear {
+  animation: hamsterEar var(--dur) ease-in-out infinite;
+  background: hsl(0, 90%, 85%);
+  border-radius: 50%;
+  box-shadow: -0.25em 0 hsl(30, 90%, 55%) inset;
+  top: -0.25em;
+  right: -0.25em;
+  width: 0.75em;
+  height: 0.75em;
+  transform-origin: 50% 75%;
+}
+
+.hamster__eye {
+  animation: hamsterEye var(--dur) linear infinite;
+  background-color: hsl(0, 0%, 0%);
+  border-radius: 50%;
+  top: 0.375em;
+  left: 1.25em;
+  width: 0.5em;
+  height: 0.5em;
+}
+
+.hamster__nose {
+  background: hsl(0, 90%, 75%);
+  border-radius: 35% 65% 85% 15% / 70% 50% 50% 30%;
+  top: 0.75em;
+  left: 0;
+  width: 0.2em;
+  height: 0.25em;
+}
+
+.hamster__body {
+  animation: hamsterBody var(--dur) ease-in-out infinite;
+  background: hsl(30, 90%, 90%);
+  border-radius: 50% 30% 50% 30% / 15% 60% 40% 40%;
+  box-shadow: 0.1em 0.75em 0 hsl(30, 90%, 55%) inset,
+    0.15em -0.5em 0 hsl(30, 90%, 80%) inset;
+  top: 0.25em;
+  left: 2em;
+  width: 4.5em;
+  height: 3em;
+  transform-origin: 17% 50%;
+  transform-style: preserve-3d;
+}
+
+.hamster__limb--fr,
+.hamster__limb--fl {
+  clip-path: polygon(0 0, 100% 0, 70% 80%, 60% 100%, 0% 100%, 40% 80%);
+  top: 2em;
+  left: 0.5em;
+  width: 1em;
+  height: 1.5em;
+  transform-origin: 50% 0;
+}
+
+.hamster__limb--fr {
+  animation: hamsterFRLimb var(--dur) linear infinite;
+  background: linear-gradient(hsl(30, 90%, 80%) 80%, hsl(0, 90%, 75%) 80%);
+  transform: rotate(15deg) translateZ(-1px);
+}
+
+.hamster__limb--fl {
+  animation: hamsterFLLimb var(--dur) linear infinite;
+  background: linear-gradient(hsl(30, 90%, 90%) 80%, hsl(0, 90%, 85%) 80%);
+  transform: rotate(15deg);
+}
+
+.hamster__limb--br,
+.hamster__limb--bl {
+  border-radius: 0.75em 0.75em 0 0;
+  clip-path: polygon(0 0, 100% 0, 100% 30%, 70% 90%, 70% 100%, 30% 100%, 40% 90%, 0% 30%);
+  top: 1em;
+  left: 2.8em;
+  width: 1.5em;
+  height: 2.5em;
+  transform-origin: 50% 30%;
+}
+
+.hamster__limb--br {
+  animation: hamsterBRLimb var(--dur) linear infinite;
+  background: linear-gradient(hsl(30, 90%, 80%) 90%, hsl(0, 90%, 75%) 90%);
+  transform: rotate(-25deg) translateZ(-1px);
+}
+
+.hamster__limb--bl {
+  animation: hamsterBLLimb var(--dur) linear infinite;
+  background: linear-gradient(hsl(30, 90%, 90%) 90%, hsl(0, 90%, 85%) 90%);
+  transform: rotate(-25deg);
+}
+
+.hamster__tail {
+  animation: hamsterTail var(--dur) linear infinite;
+  background: hsl(0, 90%, 85%);
+  border-radius: 0.25em 50% 50% 0.25em;
+  box-shadow: 0 -0.2em 0 hsl(0, 90%, 75%) inset;
+  top: 1.5em;
+  right: -0.5em;
+  width: 1em;
+  height: 0.5em;
+  transform: rotate(30deg) translateZ(-1px);
+  transform-origin: 0.25em 0.25em;
+}
+
+.spoke {
+  animation: spoke var(--dur) linear infinite;
+  background: radial-gradient(100% 100% at center, hsl(0, 0%, 60%) 4.8%, hsla(0, 0%, 60%, 0) 5%),
+    linear-gradient(hsla(0, 0%, 55%, 0) 46.9%, hsl(0, 0%, 65%) 47% 52.9%, hsla(0, 0%, 65%, 0) 53%) 50% 50% / 99% 99% no-repeat;
+}
+
+/* Animations */
+@keyframes hamster {
+
+  from,
+  to {
+    transform: rotate(4deg) translate(-0.8em, 1.85em);
   }
-  
-  /* Reset and Base Styles */
-  * {
-    border: 0;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+
+  50% {
+    transform: rotate(0) translate(-0.8em, 1.85em);
   }
-  
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #000;
-    color: #3df1f1;
-    font: 1em 'Dosis', sans-serif;
-    height: 100vh;
-    perspective: 40em;
+}
+
+@keyframes hamsterHead {
+
+  from,
+  25%,
+  50%,
+  75%,
+  to {
+    transform: rotate(0);
   }
-  
-  .preloader {
-    animation: tiltSpin var(--animDuration) linear infinite;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    width: 17em;
-    height: 20em;
-    transform-style: preserve-3d;
+
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: rotate(8deg);
   }
-  
-  .preloader__ring {
-    animation: spin calc(var(--animDuration) / 2) linear infinite;
-    font-size: 2em;
-    position: relative;
-    height: 3rem;
-    width: 1.5rem;
-    transform-style: preserve-3d;
+}
+
+@keyframes hamsterEye {
+
+  from,
+  90%,
+  to {
+    transform: scaleY(1);
   }
-  
-  .preloader__ring:nth-child(even) {
-    animation-direction: reverse;
+
+  95% {
+    transform: scaleY(0);
   }
-  
-  .preloader__sector {
-    font-weight: 600;
-    position: absolute;
-    top: 0;
-    left: 0;
-    text-align: center;
-    text-transform: uppercase;
-    transform: translateZ(var(--ringRadius));
+}
+
+@keyframes hamsterEar {
+
+  from,
+  25%,
+  50%,
+  75%,
+  to {
+    transform: rotate(0);
   }
-  
-  .preloader__sector, .preloader__sector:empty::before {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
+
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: rotate(12deg);
   }
-  
-  .preloader__sector:empty::before {
-    background: linear-gradient(transparent 45%, currentColor 45% 55%, transparent 55%);
-    content: "";
+}
+
+@keyframes hamsterBody {
+
+  from,
+  25%,
+  50%,
+  75%,
+  to {
+    transform: rotate(0);
   }
-  
-  /* Position sectors */
-  .preloader__sector:nth-child(1) {
-    transform: rotateY(calc(360deg / var(--ringSectors) * (1 - 1))) translateZ(var(--ringRadius));
+
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: rotate(-2deg);
   }
-  .preloader__sector:nth-child(2) {
-    transform: rotateY(calc(360deg / var(--ringSectors) * (2 - 1))) translateZ(var(--ringRadius));
+}
+
+@keyframes hamsterFRLimb {
+
+  from,
+  25%,
+  50%,
+  75%,
+  to {
+    transform: rotate(50deg) translateZ(-1px);
   }
-  .preloader__sector:nth-child(3) {
-    transform: rotateY(calc(360deg / var(--ringSectors) * (3 - 1))) translateZ(var(--ringRadius));
+
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: rotate(-30deg) translateZ(-1px);
   }
-  .preloader__sector:nth-child(4) {
-    transform: rotateY(calc(360deg / var(--ringSectors) * (4 - 1))) translateZ(var(--ringRadius));
+}
+
+@keyframes hamsterFLLimb {
+
+  from,
+  25%,
+  50%,
+  75%,
+  to {
+    transform: rotate(-30deg);
   }
-  .preloader__sector:nth-child(5) {
-    transform: rotateY(calc(360deg / var(--ringSectors) * (5 - 1))) translateZ(var(--ringRadius));
+
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: rotate(50deg);
   }
-  .preloader__sector:nth-child(6) {
-    transform: rotateY(calc(360deg / var(--ringSectors) * (6 - 1))) translateZ(var(--ringRadius));
+}
+
+@keyframes hamsterBRLimb {
+
+  from,
+  25%,
+  50%,
+  75%,
+  to {
+    transform: rotate(-60deg) translateZ(-1px);
   }
-  .preloader__sector:nth-child(7) {
-    transform: rotateY(calc(360deg / var(--ringSectors) * (7 - 1))) translateZ(var(--ringRadius));
+
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: rotate(20deg) translateZ(-1px);
   }
-  .preloader__sector:nth-child(8) {
-    transform: rotateY(calc(360deg / var(--ringSectors) * (8 - 1))) translateZ(var(--ringRadius));
+}
+
+@keyframes hamsterBLLimb {
+
+  from,
+  25%,
+  50%,
+  75%,
+  to {
+    transform: rotate(20deg);
   }
-  .preloader__sector:nth-child(9) {
-    transform: rotateY(calc(360deg / var(--ringSectors) * (9 - 1))) translateZ(var(--ringRadius));
+
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: rotate(-60deg);
   }
-  .preloader__sector:nth-child(10) {
-    transform: rotateY(calc(360deg / var(--ringSectors) * (10 - 1))) translateZ(var(--ringRadius));
+}
+
+@keyframes hamsterTail {
+
+  from,
+  25%,
+  50%,
+  75%,
+  to {
+    transform: rotate(30deg) translateZ(-1px);
   }
-  .preloader__sector:nth-child(11) {
-    transform: rotateY(calc(360deg / var(--ringSectors) * (11 - 1))) translateZ(var(--ringRadius));
+
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: rotate(10deg) translateZ(-1px);
   }
-  .preloader__sector:nth-child(12) {
-    transform: rotateY(calc(360deg / var(--ringSectors) * (12 - 1))) translateZ(var(--ringRadius));
+}
+
+@keyframes spoke {
+  from {
+    transform: rotate(0);
   }
-  .preloader__sector:nth-child(13) {
-    transform: rotateY(calc(360deg / var(--ringSectors) * (13 - 1))) translateZ(var(--ringRadius));
+
+  to {
+    transform: rotate(-1turn);
   }
-  .preloader__sector:nth-child(14) {
-    transform: rotateY(calc(360deg / var(--ringSectors) * (14 - 1))) translateZ(var(--ringRadius));
-  }
-  .preloader__sector:nth-child(15) {
-    transform: rotateY(calc(360deg / var(--ringSectors) * (15 - 1))) translateZ(var(--ringRadius));
-  }
-  
-  .preloader__text {
-    margin-top: 2em;
-    font-size: 1.5em;
-    color: #fff;
-    animation: pulse 2s infinite;
-  }
-  
-  .preloader__bar {
-    width: 80%;
-    height: 10px;
-    background: linear-gradient(270deg, #3df1f1, #1e90ff, #ff1493, #3df1f1);
-    background-size: 600% 600%;
-    animation: gradientShift 2s ease infinite;
-    margin-top: 1em;
-  }
-  
-  /* Animations */
-  @keyframes tiltSpin {
-    from {
-      transform: rotateY(0) rotateX(30deg);
-    }
-    to {
-      transform: rotateY(1turn) rotateX(30deg);
-    }
-  }
-  
-  @keyframes spin {
-    from {
-      transform: rotateY(0);
-    }
-    to {
-      transform: rotateY(1turn);
-    }
-  }
-  
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    50% {
-      opacity: 0.5;
-      transform: translateY(-10px);
-    }
-  }
-  
-  @keyframes gradientShift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-  
+}
