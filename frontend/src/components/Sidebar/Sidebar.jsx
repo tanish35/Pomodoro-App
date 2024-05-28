@@ -6,7 +6,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 const Sidebar = () => {
     const navigate = useNavigate();
     function navigateTimer() {
-        navigate("/timer2")
+        navigate("/timer")
     }
     function navigateDashboard() {
         navigate("/profile/dashboard")
