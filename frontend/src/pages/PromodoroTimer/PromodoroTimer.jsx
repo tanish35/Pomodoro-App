@@ -79,7 +79,7 @@ const Pomodoro = () => {
     setIsRunning(false);
     const stopMinutes = new Date().getTime() / 60000;
     const minutes = stopMinutes - startMinutes;
-    const hoursStudies = Math.floor(minutes / 60);
+    const totalHours = Math.floor(minutes / 60);
     const period = new Date().getHours();
     const age = userData.age;
     setDataPosting(true);
