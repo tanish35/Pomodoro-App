@@ -34,8 +34,8 @@ const App = () => {
 
 
 
-          <Route path="/timer" element={<TimerPomodoro/>}/>
-          <Route path="/timer2" element={<Pomodoro />}/>
+          <Route path="/timer2" element={<TimerPomodoro/>}/>
+          <Route path="/timer" element={<Pomodoro />}/>
         <Route path="/profile" element={<MainLayout/>}>
 
           <Route path="dashboard" element={<Dashboard/>}/>
