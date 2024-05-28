@@ -81,7 +81,14 @@ const Layout = () => {
               </div>
             ) : (
               <div className={css.profile}>
-                <img src={userData.pic} alt="person image" />
+                {/* <img src={userData.pic} className="h-48 w-48 rounded-full border-green-400 border-2" alt="person image" /> */}
+                <div className="relative h-20 w-20 rounded-full border-2 border-green-400 overflow-hidden">
+        <img
+          src={userData.pic}
+          className="h-full w-full object-cover rounded-full transition-all duration-300 ease-in-out hover:w-24 hover:h-24"
+          alt="person"
+        />
+      </div>
                 <div className={css.details}>
                   <span>{userData.name}</span>
                   <span>Age : {userData.age}</span>
