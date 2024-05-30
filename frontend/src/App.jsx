@@ -35,7 +35,7 @@ const App = () => {
 
 
           <Route path="/timer2" element={<TimerPomodoro/>}/>
-          <Route path="/timer" element={<Pomodoro />}/>
+          <Route path="/timer" element={<TimerLayout />}/>
         <Route path="/profile" element={<MainLayout/>}>
 
           <Route path="dashboard" element={<Dashboard/>}/>
@@ -59,6 +59,15 @@ function MainLayout() {
       <Layout />
     </div>
   );
+}
+
+function TimerLayout() {
+  return (
+    <div id="dashboard">
+      <Pomodoro/>
+    </div>
+  );
+  
 }
 
 export default App;
