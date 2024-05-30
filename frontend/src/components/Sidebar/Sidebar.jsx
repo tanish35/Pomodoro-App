@@ -5,7 +5,8 @@ import { FaTasks } from "react-icons/fa";
 import { NavLink, useNavigate } from 'react-router-dom';
 const Sidebar = () => {
     const navigate = useNavigate();
-    function navigateTimer() {
+    function navigateTimer(e) {
+        e.preventDefault();
         navigate("/timer")
     }
     function navigateDashboard() {
