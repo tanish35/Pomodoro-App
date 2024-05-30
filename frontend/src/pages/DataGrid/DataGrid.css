@@ -1,7 +1,7 @@
 .table-container{
     padding: 3rem 5rem;
     overflow-y: auto;
-    height: calc(100vh - 15rem);
+    height: calc(100vh);
 }
 .table-container>:nth-child(1)
 {
