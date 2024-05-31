@@ -1,23 +1,13 @@
-.table-container {
+.table-container{
     padding: 3rem 5rem;
-    display: flex;
-    justify-content: center;
-    /* Center the table horizontally */
-    align-items: center;
-    /* Center the table vertically */
-    height: 80vh;
-    /* Adjust the height as needed */
     overflow-y: auto;
-    /* Enable vertical scrolling */
+    height: calc(100vh);
 }
-
-.table-container>:nth-child(1) {
-    border-radius: 10px !important;
-    overflow: hidden !important;
-    ;
+.table-container>:nth-child(1)
+{
+    border-radius: 10px!important;
+    overflow: hidden!important;;
 }
-
-.MuiTableRow-root,
-.MuiTableCell-root {
-    border: none !important;
+.MuiTableRow-root, .MuiTableCell-root{
+    border: none!important;
 }

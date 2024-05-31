@@ -3,9 +3,11 @@ import { MdPunchClock, MdSpaceDashboard } from "react-icons/md";
 import { AiFillCalendar, AiOutlineTable } from "react-icons/ai";
 import { FaTasks } from "react-icons/fa";
 import { NavLink, useNavigate } from 'react-router-dom';
+import logo from '../../assets/Logos/OIG2.hG2hz7QR.jpeg'
 const Sidebar = () => {
     const navigate = useNavigate();
-    function navigateTimer() {
+    function navigateTimer(e) {
+        e.preventDefault();
         navigate("/timer")
     }
     function navigateDashboard() {
@@ -17,7 +19,7 @@ const Sidebar = () => {
     return (
         <div className={css.container}>
 
-            {/* <img src="./logo.png" alt="logo" className={css.logo} /> */}
+            <img src={logo} alt="logo"  className="w-9 h-9 rounded-full" />
 
 
             <div className={css.menu}>
