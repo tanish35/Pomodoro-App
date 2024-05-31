@@ -22,7 +22,7 @@ const Pomodoro = () => {
   const [dataPosting, setDataPosting] = useState(false);
   const [inputLink, setInputLink] = useState("");
   const [playListLink, setPlayListLink] = useState(
-    "https://open.spotify.com/playlist/37i9dQZF1DZ06evNZVVBPG?si=8bc8cebd99fb492f"
+    "https://open.spotify.com/playlist/37i9dQZF1DX8Uebhn9wzrS?si=01806f74f89441e6"
   );
   const intervalRef = useRef(null);
   const [task, setTask] = useState("");
