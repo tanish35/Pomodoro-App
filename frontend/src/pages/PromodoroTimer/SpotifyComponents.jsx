@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Spotify } from 'react-spotify-embed'; // Adjust the import based on the actual Spotify component you are using
+import React, { useState, useEffect } from "react";
+import { Spotify } from "react-spotify-embed"; // Adjust the import based on the actual Spotify component you are using
 
 const isValidUrl = (url) => {
   try {
@@ -35,4 +35,3 @@ const SpotifyComponent = ({ playListLink }) => {
 };
 
 export default SpotifyComponent;
-

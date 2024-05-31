@@ -10,6 +10,7 @@ import axios from "axios";
 import { useUser } from "../../hook/useUser";
 import { Navigate } from "react-router-dom";
 import SpotifyComponent from "./SpotifyComponents";
+import { input } from "@nextui-org/react";
 
 const Pomodoro = () => {
   const [sessionLength, setSessionLength] = useState(25);
@@ -31,6 +32,18 @@ const Pomodoro = () => {
   if (!loading && userData.length == 0) {
     return <Navigate to="/signin" />;
   }
+  const handleSetLink = (link) => {
+    const regex = /^(https:\/\/open\.spotify\.com\/(track|playlist))\/.*/;
+
+    // Test the URL against the regex pattern
+    if (!regex.test(link)) {
+      alert("Please enter a valid Spotify link");
+      return false; // Return false if the URL does not match the pattern
+    }
+
+    setPlayListLink(link);
+  };
+
   useEffect(() => {
     if (isRunning) {
       intervalRef.current = setInterval(() => {
@@ -202,7 +215,7 @@ const Pomodoro = () => {
                   type="button"
                   value="Play"
                   className="bg-blue-500 p-2 rounded-tr-lg rounded-br-lg text-white font-semibold hover:bg-blue-800 transition-colors"
-                  onClick={(e) => setPlayListLink(inputLink)}
+                  onClick={(e) => handleSetLink(inputLink)}
                 />
               </div>
             </div>
