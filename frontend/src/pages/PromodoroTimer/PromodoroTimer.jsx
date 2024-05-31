@@ -3,7 +3,9 @@ import FlipCountdown from "@rumess/react-flip-countdown";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import "tailwindcss/tailwind.css";
 import breakSound from "../../assets/EndSound.mp3";
+import css from "./Pomodoro.module.css";
 import { time } from "echarts";
+import { Spotify } from "react-spotify-embed";
 import axios from "axios";
 import { useUser } from "../../hook/useUser";
 import { Navigate } from "react-router-dom";
@@ -179,6 +181,9 @@ const Pomodoro = () => {
     >
       <Sidebar />
       <div className="bg-transparent p-6 rounded-lg w-full max-w-lg mx-auto text-center">
+        <div className={`${css.spotify}`}>
+          <Spotify link="https://open.spotify.com/playlist/37i9dQZF1DZ06evNZVVBPG?si=8bc8cebd99fb492f" />
+        </div>
         {!isRunning ? (
           <>
             <div className="flex justify-center mb-4">
