@@ -69,7 +69,7 @@ const OTPVerification = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="Enter your registered email"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
             />
           </label>
 
@@ -81,7 +81,7 @@ const OTPVerification = () => {
               value={form.OTP}
               onChange={handleChange}
               placeholder="Enter the OTP sent to your email"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
             />
           </label>
 
@@ -93,7 +93,7 @@ const OTPVerification = () => {
               value={form.password}
               onChange={handleChange}
               placeholder="Enter your new password"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
             />
           </label>
 
