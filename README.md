@@ -32,6 +32,12 @@ https://api.tanish.me
 https://app.tanish.me
 ```
 
+**AI/ML Model URL**: THE MODEL IS LIVE.
+
+```bash
+https://ai.tanish.me
+```
+
 # Getting Started
 
 **Using Docker**
