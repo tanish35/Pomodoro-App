@@ -1,6 +1,24 @@
 # Pomodoro App
 
+
+[![GitHub release](https://img.shields.io/github/v/release/tanish35/Pomodoro-App)](https://github.com/tanish35/Pomodoro-App/releases)
+[![GitHub issues](https://img.shields.io/github/issues/tanish35/Pomodoro-App)](https://github.com/tanish35/Pomodoro-App/issues)
+[![GitHub forks](https://img.shields.io/github/forks/tanish35/Pomodoro-App)](https://github.com/tanish35/Pomodoro-App/network)
+[![GitHub stars](https://img.shields.io/github/stars/tanish35/Pomodoro-App)](https://github.com/tanish35/Pomodoro-App/stargazers)
+[![GitHub license](https://img.shields.io/github/license/tanish35/Pomodoro-App)](https://github.com/tanish35/Pomodoro-App/blob/main/LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 Welcome to our Pomodoro App! This productivity tool is designed to help you manage your time effectively using the Pomodoro Technique. With this app, you can break your work into intervals, traditionally 25 minutes in length, separated by short breaks.
+
+## Features
+
+- **Timer Management**: Start, pause, and reset timers.
+- **Custom Intervals**: Set custom work and break intervals.
+- **Notifications**: Get notified when intervals end.
+- **Progress Tracking**: Track your productivity over time.
+
+
 
 **Backend URL**: THE BACKEND IS LIVE.
 
@@ -12,6 +30,12 @@ https://api.tanish.me
 
 ```bash
 https://app.tanish.me
+```
+
+**AI/ML Model URL**: THE MODEL IS LIVE.
+
+```bash
+https://ai.tanish.me
 ```
 
 # Getting Started
