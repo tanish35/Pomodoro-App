@@ -1,6 +1,5 @@
 # Pomodoro App
 
-
 [![GitHub release](https://img.shields.io/github/v/release/tanish35/Pomodoro-App)](https://github.com/tanish35/Pomodoro-App/releases)
 [![GitHub issues](https://img.shields.io/github/issues/tanish35/Pomodoro-App)](https://github.com/tanish35/Pomodoro-App/issues)
 [![GitHub forks](https://img.shields.io/github/forks/tanish35/Pomodoro-App)](https://github.com/tanish35/Pomodoro-App/network)
@@ -18,24 +17,22 @@ Welcome to our Pomodoro App! This productivity tool is designed to help you mana
 - **Notifications**: Get notified when intervals end.
 - **Progress Tracking**: Track your productivity over time.
 
-
-
 **Backend URL**: THE BACKEND IS LIVE.
 
 ```bash
-https://api.tanish.me
+https://api-pomodoro.wedevelopers.online
 ```
 
 **Frontend URL**: THE FRONTEND IS LIVE.
 
 ```bash
-https://app.tanish.me
+https://app-pomodoro.wedevelopers.online
 ```
 
 **AI/ML Model URL**: THE MODEL IS LIVE.
 
 ```bash
-https://ai.tanish.me
+https://ai-pomodoro.wedevelopers.online
 ```
 
 # Getting Started

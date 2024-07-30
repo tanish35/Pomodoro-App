@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-  origin: ["https://app.tanish.me", "http://localhost:5173"],
+  origin: ["https://app-pomodoro.wedevelopers.online", "http://localhost:5173"],
   credentials: true, // Enable credentials (cookies)
 };
 

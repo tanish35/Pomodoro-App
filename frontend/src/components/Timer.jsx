@@ -125,7 +125,7 @@ export default function Timer() {
     };
     try {
       const response = await axios.post(
-        "https://ai.tanish.me/predict",
+        "https://ai-pomodoro.wedevelopers.online/predict",
         requestBody
       );
       alert("Switch to break tab to find our suggested break time!");

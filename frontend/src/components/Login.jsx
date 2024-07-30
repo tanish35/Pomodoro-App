@@ -147,7 +147,7 @@ const Login = () => {
                 alt="google"
               />
               <Link
-                to="https://api.tanish.me/auth/google"
+                to="https://api-pomodoro.wedevelopers.online/auth/google"
                 className="text-gray-500"
                 onClick={() => {
                   setActive("");

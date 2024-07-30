@@ -27,7 +27,7 @@ router.get(
       useHttpOnly: true,
       sameSite: "none",
     });
-    res.redirect("https://app.tanish.me/profile/dashboard");
+    res.redirect("https://app-pomodoro.wedevelopers.online/profile/dashboard");
   }
 );
 

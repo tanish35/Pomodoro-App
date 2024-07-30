@@ -1,1 +1,1 @@
-export const BACKEND_URL = "https://api.tanish.me";
+export const BACKEND_URL = "https://api-pomodoro.wedevelopers.online";

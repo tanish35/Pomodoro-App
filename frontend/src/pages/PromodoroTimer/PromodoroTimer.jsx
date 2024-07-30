@@ -113,11 +113,14 @@ const Pomodoro = () => {
         { minutes, task },
         { withCredentials: true }
       );
-      const fetchBreak = await axios.post("https://ai.tanish.me/predict", {
-        period,
-        totalHours,
-        age,
-      });
+      const fetchBreak = await axios.post(
+        "https://ai-pomodoro.wedevelopers.online/predict",
+        {
+          period,
+          totalHours,
+          age,
+        }
+      );
       alert(
         "Session ended! Its time for your break! You also can reload the page to start a new session."
       );
