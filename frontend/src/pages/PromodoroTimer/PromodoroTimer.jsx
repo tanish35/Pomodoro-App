@@ -100,7 +100,9 @@ const Pomodoro = () => {
     const minutes = stopMinutes - startMinutes;
     const totalHours = minutes;
     if (totalHours < 3) {
-      alert("You have not  for atleast 4 minutes. Please continue studying.");
+      alert(
+        `You have not done ${task} for atleast 4 minutes. Please continue studying.`
+      );
       return;
     }
     setIsRunning(false);
