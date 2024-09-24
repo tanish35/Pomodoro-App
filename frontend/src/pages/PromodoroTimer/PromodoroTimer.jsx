@@ -33,7 +33,7 @@ const Pomodoro = () => {
     return <Navigate to="/signin" />;
   }
   const handleSetLink = (link) => {
-    const regex = /^(https:\/\/open\.spotify\.com\/(track|playlist))\/.*/;
+    const regex = /^(https:\/\/open\.spotify\.com\/(track|playlist|album))\/.*/;
 
     // Test the URL against the regex pattern
     if (!regex.test(link)) {
